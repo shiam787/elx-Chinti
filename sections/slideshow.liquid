@@ -1,0 +1,172 @@
+<div class="wrapper full-width" data-section-id="{{ section.id }}" data-section-type="slideshow-section">
+
+	{% if section.blocks.size > 0 %}
+	<div class="slideshow-wrapper row">
+
+		<div class="slideshow owl-carousel" id="Slideshow-{{ section.id }}">
+			{% for block in section.blocks %}
+
+			<div class="slideshow__slide slideshow__slide--{{ block.id }} {{ block.settings.text_color | escape }}" {{ block.shopify_attributes }}>
+
+				<div class="slideshow__image">
+					{% if block.settings.image %}
+
+					{% if forloop.first == true %}
+
+					<picture>
+						<source
+              media="(min-width: 900px)"
+              srcset="{{ block.settings.image | img_url: '100x' }}"
+              data-srcset="{{ block.settings.image | img_url: '2048x' }}"
+            >
+						<source
+              media="(min-width: 500px)"
+              srcset="{{ block.settings.image | img_url: '100x' }}"
+              data-srcset="{{ block.settings.image | img_url: '900x' }}"
+            >
+						<source
+              srcset="{{ block.settings.mobile_image | img_url: '100x' }}"
+              data-srcset="{{ block.settings.mobile_image | img_url: '500x' }}"
+            >
+						<img
+              src="{{ block.settings.image | img_url: '100x' }}"
+              data-src="{{ block.settings.image | img_url: 'master' }}"
+              alt=""
+              class="lazyload"
+            />
+					</picture>
+
+					{% else %}
+
+					{% comment %}
+					need to lazy load subsequent images: ###########
+					<img src="" class="owl-lazy" data-src="{{ block.settings.image | img_url: '2048x' }}" alt="" />
+					{% endcomment %}
+					<picture>
+						<source
+              media="(min-width: 900px)"
+              srcset="{{ block.settings.image | img_url: '100x' }}"
+              data-srcset="{{ block.settings.image | img_url: '2048x' }}"
+            >
+						<source
+              media="(min-width: 500px)"
+              srcset="{{ block.settings.image | img_url: '100x' }}"
+              data-srcset="{{ block.settings.image | img_url: '900x' }}"
+            >
+						<source
+              srcset="{{ block.settings.mobile_image | img_url: '100x' }}"
+              data-srcset="{{ block.settings.mobile_image | img_url: '500x' }}"
+            >
+						<img
+              src="{{ block.settings.image | img_url: '100x' }}"
+              data-src="{{ block.settings.image | img_url: '2048x' }}"
+              alt=""
+              class="lazyload"
+            />
+					</picture>
+
+					{% endif %}
+
+					{% endif %}
+					{% if block.settings.image == blank %}
+					<div class="placeholder-background">
+						{% capture current %}{% cycle 1, 2 %}{% endcapture %}
+						{{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+					</div>
+					{% endif %}
+				</div>
+				{% if block.settings.link != blank %}
+					<a href="{{ block.settings.link }}" class="link_full">&nbsp;</a>
+				{% endif %}
+				<div class="text-wrap overlay">
+					<div class="text-content">
+						<div class="wrapper">
+							{% unless block.settings.title == blank %}
+							<h2 class="mega-title title"> {{ block.settings.title }} </h2>
+							{% endunless %}
+							{% unless block.settings.subheading == blank %}
+							<p class="mega-subtitle subtitle"> {{ block.settings.subheading | escape }} </p>
+							{% endunless %}
+						</div>
+					</div>
+				</div>
+				{% if block.settings.link != blank %}
+					<a href="{{ block.settings.link }}" class="btn-shop-now">Shop Now</a>
+				{% endif %}
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+	{% endif %}
+
+</div>
+
+{% schema %}
+  {
+    "name": "Slideshow",
+    "class": "index-section index-section--flush",
+    "max_blocks": 4,
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "image_picker",
+            "id": "mobile_image",
+            "label": "Mobile Image"
+          },
+          {
+            "type": "select",
+            "id": "text_color",
+            "label": "Text color",
+            "options": [
+              { "value": "text-light", "label": "Light" },
+              { "value": "text-dark", "label": "Dark" }
+            ],
+            "default": "text-light"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Image slide"
+          },
+          {
+            "type": "text",
+            "id": "subheading",
+            "label": "Subheading",
+            "default": "Lorem ipsum dolor sit amet"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Slide link"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Slideshow",
+      "category": "Image",
+      "settings": {
+
+      },
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }]
+  }
+{% endschema %}

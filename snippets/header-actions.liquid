@@ -1,0 +1,84 @@
+<ul class="header-actions">
+    <li class="header-actions__action header-actions__action--search">
+        <a
+            href="#"
+            id="searchToggle"
+            class="header-actions__link search-trigger link"
+            title="Search"
+            data-search-trigger
+        >
+            <div class="page-header__icon header-actions__icon">
+                {%- render 'svg--search' -%}
+            </div>
+
+            <span class="sr-only">Search</span>
+        </a>
+    </li>
+
+    <li class="header-actions__action header-actions__action--wishlist">
+        <a
+            href="/pages/wishlist"
+            class="header-actions__link wishlist-link link"
+            title="Wishlist"
+        >
+
+            <div class="page-header__icon header-actions__icon">
+                {%- render 'svg--wishlist' -%}
+            </div>
+
+            <span class="sr-only">Wishlist</span>
+        </a>
+    </li>
+
+    <li class="header-actions__action header-actions__action--contact">
+        <a
+            href="/pages/contact-us"
+            class="header-actions__link contact-link link"
+            title="Contact"
+        >
+            <div class="page-header__icon header-actions__icon">
+                {%- render 'svg--contact' -%}
+            </div>
+
+            <span class="sr-only">Contact</span>
+        </a>
+    </li>
+
+    {%- if shop.customer_accounts_enabled -%}
+        <li class="header-actions__action header-actions__action--account">
+            <a
+                href="/{% unless customer %}pages/{% endunless %}account"
+                class="header-actions__link account-link link"
+                title="Account"
+            >
+                <div class="page-header__icon header-actions__icon">
+                    {%- render 'svg--account' -%}
+                </div>
+
+                <span class="sr-only">Account</span>
+            </a>
+        </li>
+    {%- endif -%}
+
+    <li class="header-actions__action header-actions__action--cart miniCart">
+        <a
+            href="/cart"
+            class="header-actions__link cart-link link"
+            id="basketToggle"
+            title="Cart"
+        >
+            <div class="page-header__icon header-actions__icon">
+                {%- render 'svg--cart' -%}
+            </div>
+
+            <span class="sr-only">Cart</span>
+            <span id="CartCount" class="cart-count">
+                {{ cart.item_count }}
+            </span>
+        </a>
+
+        <div id="cart-container">
+            <div id="CartContainer"></div>
+        </div>
+    </li>
+</ul>

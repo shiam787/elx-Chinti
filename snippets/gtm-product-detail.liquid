@@ -1,0 +1,26 @@
+{% comment %}
+    @param  product  ProductDrop
+        The product that has been viewed.
+{% endcomment %}
+<script>
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+    'event': 'productDetail',
+    'ecommerce': {
+        'currencyCode': {{ shop.currency | json }},
+        'detail': {
+            'products': [
+                {
+                    'name': {{ product.title | json }},
+                    'id': {{ product.selected_or_first_available_variant.sku | json }},
+                    'price': {{ product.price | money_without_currency | json }},
+                    'brand': {{ product.vendor | json }},
+                    'category': {{ product.type | json }},
+                    'variant': {{ product.selected_or_first_available_variant.title | json }},
+                    'position': 1,
+                },
+            ]
+        }
+    },
+});
+</script>

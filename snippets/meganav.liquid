@@ -1,0 +1,99 @@
+<div
+    class="meganav {{ classes }}"
+    data-meganav
+    {% if enable_mobile_background_colour %}
+      data-mobile-background-colour="{{ mobile_background_colour }}"
+    {% endif %}
+
+    {% if enable_mobile_item_colours %}
+        data-mobile-item-colour="{{ mobile_item_colour }}"
+    {% endif %}
+
+    {% if enable_mobile_action_colours %}
+        data-mobile-action-colour="{{ mobile_action_colour }}"
+    {% endif %}
+>
+    <ul class="meganav-items">
+        {%- render 'meganav-item' for meganav as item -%}
+    </ul>
+
+    <ul class="meganav-actions">
+        <li class="meganav-actions__action meganav-actions__action--wishlist">
+            <a
+                href="/pages/wishlist"
+                class="meganav-actions__link wishlist-link link"
+                title="Wishlist"
+            >
+
+                <div class="meganav-actions__icon">
+                    {%- render 'svg--wishlist' -%}
+                </div>
+
+                <span class="sr-only">Wishlist</span>
+            </a>
+        </li>
+
+        <li class="meganav-actions__action meganav-actions__action--contact">
+            <a
+                href="/pages/contact-us"
+                class="meganav-actions__link contact-link link"
+                title="Contact"
+            >
+                <div class="meganav-actions__icon">
+                    {%- render 'svg--contact' -%}
+                </div>
+
+                <span class="sr-only">Contact</span>
+            </a>
+        </li>
+
+        {%- if shop.customer_accounts_enabled -%}
+            <li class="meganav-actions__action meganav-actions__action--account">
+                <a
+                    href="/{% unless customer %}pages/{% endunless %}account"
+                    class="meganav-actions__link account-link link"
+                    title="Account"
+                >
+                    <div class="meganav-actions__icon">
+                        {%- render 'svg--account' -%}
+                    </div>
+
+                    <span class="sr-only">Account</span>
+                </a>
+            </li>
+        {%- endif -%}
+    </ul>
+
+    <ul class="meganav-social">
+        <li class="meganav-social__item">
+            <a href="{{ settings.facebook_url }}" class="meganav-social__link">
+                <div class="meganav-social__icon">
+                    {%- render 'svg--facebook' -%}
+                </div>
+
+                <span class="sr-only">Facebook</span>
+            </a>
+        </li>
+
+        <li class="meganav-social__item">
+            <a href="{{ settings.twitter_url }}" class="meganav-social__link">
+                <div class="meganav-social__icon">
+                    {%- render 'svg--twitter' -%}
+                </div>
+
+                <span class="sr-only">Twitter</span>
+            </a>
+        </li>
+
+        <li class="meganav-social__item">
+            <a href="{{ settings.instagram_url }}" class="meganav-social__link">
+                <div class="meganav-social__icon">
+                    {%- render 'svg--instagram' -%}
+                </div>
+
+                <span class="sr-only">Instagram</span>
+            </a>
+        </li>
+    </ul>
+
+</div>

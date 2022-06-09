@@ -1,0 +1,39 @@
+{% form 'customer' %}
+    <p class="text-dark newsletter-title">{{ title }}</p>
+
+    <div class="input-group">
+        {{ form.errors | default_errors }}
+        <div>
+            <input type="hidden" name="contact[tags]" value="newsletter">
+        </div>
+
+        <div class="email-container">
+            <label class="wrap visibleHide" for="email">
+                {{ 'footer.form.email_label' | t }}
+            </label>
+            <input
+                type="email"
+                name="contact[email]"
+                id="Email"
+                class="email"
+                value=""
+                placeholder="{{ 'footer.form.email_placeholder' | t }}" autocorrect="off" autocapitalize="off">
+        </div>
+
+        <div>
+            <p id="signUpFormCheckbox" class="visibleHide">
+                <input type="hidden" name="customer[accepts_marketing]" value="" />
+                <input type="checkbox" name="customer[accepts_marketing]" checked="checked" id="marketing">
+                <label for="marketing">I agree to receive email marketing from Chinti &amp; Parker. See our Privacy Policy for further details</label>
+            </p>
+
+            <button
+                type="submit"
+                class="btn"
+                name="commit"
+                id="Subscribe">
+                {{ 'footer.form.submit_label' | t }}
+            </button>
+        </div>
+    </div>
+{% endform %}

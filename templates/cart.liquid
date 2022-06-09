@@ -1,0 +1,202 @@
+<div class="shopping-bag wrapper">
+	<form action="/cart" method="post">
+		<div class="page-title title-buttons">
+			{% if cart.item_count > 0 %}
+			<h1>
+				Your Bag ({{cart.item_count}} Item{% if cart.item_count > 1 %}s{% endif %})
+				<p class="return"><a class="button-text" href="/collections/all">Continue Shopping</a></p>
+				<p class="next"><button class="button" type="submit" name="checkout">Checkout Securely</button></p>
+			</h1>
+			{% else %}
+			<h1>Your bag is empty!</h1>
+			<p class="empty">You can continue browsing <a href="/collections/all">here</a>.</p>
+			{% endif %}
+
+		</div>
+
+		<div class="discountCodeField" id="mobileDiscount">
+			<label for="discount">Discount code</label>
+			<input autocomplete="off" type="text" name="discount" placeholder="Enter your discount code" />
+		</div>
+
+		{% if cart.item_count > 0 %}
+			<div class="row">
+				<div class="bag-table order-table">
+					<table>
+						<thead class="hidden">
+							<tr>
+								<th>Item</th>
+								<th>&nbsp;</th>
+								<th class="text-center">Price</th>
+								<th class="text-center">Quantity</th>
+								<th class="text-right">Total</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for item in cart.items %}
+							{% assign collection_url = item.product.collections.last.url %}
+							{% if collection_url == '/collections/frontpage' or collection_url == blank %}
+							{% assign collection_url = '/collections/all' %}
+							{% endif %}
+
+							{% if forloop.first %}
+							{% assign continue_shopping_url = collection_url %}
+							{% endif %}
+
+							<tr>
+							<td class="image"><a href="{{ collection_url }}{{ item.url }}">
+								<picture>
+								<source media="(min-width: 421px)" srcset="{{ item | img_url: '149x224', crop: 'center' }}">
+								<source srcset="{{ item | img_url: '420x630', crop: 'center' }}">
+								<img src="{{ item | img_url: '149x224', crop: 'center' }}"  alt="{{ item.title | escape }}" />
+								</picture>
+								</a></td>
+								<td class="product">
+									<a class="name" href="{{ collection_url }}{{ item.url }}"> {{ item.title | replace: " - ", " " }} </a>
+									{% unless item.variant.barcode == blank %}<span>SKU: {{ item.variant.barcode }}</span>{%endunless%}
+									<span>Size: {{ item.variant.title }}</span>
+								</td>
+								<td class="qty product">
+								<div
+									class="details"
+									data-product='{
+										"name": {{ item.product.title | json }},
+										"id": {{ item.sku | json }},
+										"price": {{ item.line_price | money_without_currency | json }},
+										"brand": {{ item.vendor | json }},
+										"category": {{ item.type | json }},
+										"variant": {{ item.variant.title | json }}
+									}'
+								>
+									<a class="name" href="{{ collection_url }}{{ item.url }}"> {{ item.title }} </a>
+									{% unless item.variant.barcode == blank %}<span>SKU: {{ item.variant.barcode }}</span>{%endunless%}
+									<span>Size: {{ item.variant.title }}</span>
+									<button class="remove" type="button" data-line="{{ forloop.index }}">Remove</button>
+									<div class="qty-total">
+									<div class="bag-qty">
+										<input type="number" name="updates[]" id="updates_{{ item.id }}" class="quantity" value="{{ item.quantity }}" />
+									</div>
+									</div>
+								</div>
+
+								<div>
+									{% if item.product.compare_at_price > item.product.price %}
+
+										<s>{{ item.product.compare_at_price | money | replace: ".00", "" }}</s>
+										<span class="on-sale">{{ item.line_price | money | replace: ".00", "" }} ({{ item.product.compare_at_price_max | minus: item.product.price | times: 100.0 | divided_by: item.product.compare_at_price_max | remove: '.0'}}% off)</span>
+
+									{% else %}
+									{% comment %}<!--
+										{{ item.line_price | money | replace: ".00", "" }}
+										/-->{% endcomment %}
+									{%endif%}
+								</div>
+
+								</td>
+								<td class="total">
+
+								<div>
+									{{ item.line_price | money  | replace: ".00", ""}}
+								</div>
+
+
+								{% comment %}
+								{% if item.product.compare_at_price > item.product.price %}
+								<div>
+									<s>{{ item.product.compare_at_price | money | replace: ".00", "" }}</s>
+									<span class="on-sale">{{ item.line_price | money | replace: ".00", "" }}</span>
+								</div>
+								{% else %}
+								<div>
+									{{ item.line_price | money  | replace: ".00", ""}}
+								</div>
+								{%endif%}
+								{% endcomment %}
+
+								</td>
+								<td class="remove text-right"><button class="remove" type="button" data-line="{{ forloop.index }}">Remove</button></td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+
+
+				{%- if settings.gift_me_enabled -%}
+					{%- render 'cart.gift-message' -%}
+				{%- endif -%}
+
+				<div class="bag-total order-table">
+					<table>
+						<tfoot>
+							<tr>
+								<td class="key">Subtotal</td>
+								<td class="value">
+									{{ cart.total_price | money | replace: ".00", ""}}
+								</td>
+							</tr>
+
+							</tr>
+							{% if cart.total_discount > 0 %}
+								<tr>
+									<td class="key">Discounts</td>
+									<td class="value">{{ cart.total_discount | money | replace: ".00", ""}}</td>
+								</tr>
+							{% endif %}
+							<tr>
+								<td class="key">
+									{{ 'cart.general.shipping_text' | t }}
+									{% unless settings.cart_shipping_message == blank %}
+										<small>
+											{{ settings.cart_shipping_message }}
+										</small>
+									{% endunless %}
+								</td>
+								<td class="value">{{ settings.cart_shipping_price | money | replace: ".00", "" }}</td>
+							</tr>
+							<tr>
+								<td class="key">Total</td>
+								<td class="value">
+									{{
+										cart.total_price
+										| plus: settings.cart_shipping_price
+										| money
+										| replace: ".00", ""
+									}}
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+
+					<div class="buttons-set text-center">
+						<div id="hubbox-here"></div>
+						<button class="button" type="submit" name="checkout" >Checkout Securely</button>
+						<div class="product-collapse">
+							{% render 'trustshop' %}
+						</div>
+						{% if settings.enable_harper_concierge%}
+						    {%- render 'harper-cart' -%}
+						{% endif %}
+						<a class="button-text" href="/collections/all">Continue Shopping</a>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	</form>
+</div>
+
+<script>
+jQuery(document).ready(function () {
+    if (localStorage.getItem('storedDiscount')){
+      var discountStored = localStorage.getItem('storedDiscount');
+      jQuery('input[name="discount"]').val(localStorage.getItem('storedDiscount'));
+    }
+    jQuery('form[action="/cart"]').on('submit', function(){
+
+      var $discountCode = jQuery('input[name="discount"]').val();
+      localStorage.setItem('storedDiscount', $discountCode);
+    });
+});
+
+</script>

@@ -1,0 +1,108 @@
+<div class="wrapper featured-collections productCarousel">
+  {% if section.settings.title != blank %}
+    <div class="row">
+      <div class="section-header text-center col-full-width">
+        <h2>{{ section.settings.title | escape }}</h2>
+      </div>
+    </div>
+  {% endif %}
+
+  {%- assign collection = collections[section.settings.collection] -%}
+
+  {% case section.settings.grid %}
+    {% when '2' %}
+      {%- assign grid_count = 'product-grid-2' -%}
+      {%- assign grid_item_width = 'col-wide-6 col-medium-6 col-small-6 col-smallest-6' -%}
+      {%- assign image_size = '530x530' -%}
+    {% when '3' %}
+      {%- assign grid_count = 'product-grid-3' -%}
+      {%- assign grid_item_width = 'col-wide-4 col-medium-4 col-small-6 col-smallest-6' -%}
+      {%- assign image_size = '345x345' -%}
+    {% when '4' %}
+      {%- assign grid_count = 'product-grid-4' -%}
+      {%- assign grid_item_width = 'col-wide-3 col-medium-3 col-small-6 col-smallest-6' -%}
+      {%- assign image_size = '250x250' -%}
+    {% when '6' %}
+      {%- assign grid_count = 'product-grid-6' -%}
+      {%- assign grid_item_width = 'col-wide-2 col-medium-2 col-small-4 col-smallest-6' -%}
+      {%- assign image_size = '250x250' -%}
+  {% endcase %}
+
+  {%- assign product_limit = section.settings.grid -%}
+
+  <div class="owl-carousel product-grid grid grid--uniform grid--view-items row {{ grid_count }}">
+    {% for product in collection.products limit: product_limit %}
+          {% include 'product-grid-item-featured' with grid_item_width %}
+    {% else %}
+
+      {% for i in (1..product_limit) %}
+        <div class="grid__item">
+          <div class="grid-view-item">
+            <a href="#" class="grid-view-item__link">
+              <div class="grid-view-item__image">
+                {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="h4 grid-view-item__title">Seeland Field Zip-Off Jacket</div>
+              <div class="grid-view-item__meta">
+                <span class="old-price">£70.00</span>
+                <span class="new-price">£80.00</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured Collection"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collection"
+      },
+      {
+        "type": "select",
+        "id": "grid",
+        "label": "Number of Products",
+        "default": "4",
+        "options": [
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "8",
+            "label": "8"
+          },
+          {
+            "value": "12",
+            "label": "12"
+          },
+          {
+            "value": "16",
+            "label": "16"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured collection",
+        "category": "Collection"
+      }
+    ]
+  }
+{% endschema %}

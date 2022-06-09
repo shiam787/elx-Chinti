@@ -1,0 +1,22 @@
+<div
+    class="search-container dropdown"
+    data-search-container
+>
+    <form action="/search" method="get" class="search-form" role="search">
+        <input
+            name="q"
+            type="search"
+            id="search-field"
+            placeholder="I’m looking for..."
+            value="{{ search.terms | escape }}"
+            autocorrect="off"
+            autocapitalize="off"
+        />
+
+        <input type="hidden" name="type" value="product">
+
+        <button type="submit" id="search-submit">
+            Search
+        </button>
+    </form>
+</div>

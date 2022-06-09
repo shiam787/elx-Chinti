@@ -1,0 +1,417 @@
+{% if template contains 'article' and blog.metafields.blogfeeder.use_canonical == 'yes' %}{% assign canonical_url = article.metafields.blogfeeder.canonical %}{% endif %}
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js" lang="{{ shop.locale }}">
+  <!--<![endif]-->
+
+  {% if template == "index" %}
+    <head itemscope itemtype="http://schema.org/WebSite">
+  {% else %}
+    <head>
+  {% endif %}
+      <meta charset="utf-8" />
+      <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
+      {%- assign shouldAppendShopName = 'false' -%}
+      {%- assign pageTitleLower = page_title | downcase -%}
+      {%- assign shopNameLower = shop.name | downcase -%}
+
+      {%- unless pageTitleLower contains shopNameLower -%}{% assign shouldAppendShopName = 'true' %}{%- endunless -%}
+      <title>
+        {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
+        {% if shouldAppendShopName == 'true' %} &ndash; {{ shop.name }}{% endif %}
+      </title>
+
+      <meta name="google-site-verification" content="Kj2pBDtC6Tx4JWdb9ohQ7Eip_0AOYzdx5BdTgUDUVS8" />
+      <meta name="google-site-verification" content="GSjf0uhVNJfXgg80vokIN3LnBqibM9gU-uYh5vAEhyw" />
+      <meta name="p:domain_verify" content="25008fddfec9308db0aebfa320d3bf40"/>
+      {%if shop.url contains 'www.us.' %}
+      <meta name="google-site-verification" content="Lb7q9K7T3dtrEl1IJ5YE1wfvS-YACIbFkJ3WaWDFs7M" />
+      {%endif%}
+
+      {%if shop.url contains 'www.eu.' %}
+      <meta name="google-site-verification" content="H3RreUbBRVQjmh1azhvoD1d2emMHnIzYKPYcZRjYNtE" />
+      {%endif%}
+
+      <meta name="msvalidate.01" content="B3259B68CC133A6B51A7AFCDCDA62990" />
+
+      {% if template == "index" %}
+        {% render 'facebook-domain-verification' %}
+      {% endif %}
+
+      {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}" />
+      {%else%}
+      {% if template == "product" %}
+      <meta name="description" content="Shop {{product.title}} {{product.type}} at {{ shop.name }}." />
+      {% elsif template == "collection" %}
+      <meta name="description" content="Discover {{collection.title}} at {{ shop.name }}. Shop our {{collection.title}} collection now." />
+      {%elsif shop.description%}
+      <meta name="description" content="{{shop.description}}" />
+      {% endif %}{% endif %}
+
+      {% assign canonicalURL = canonical_url %}
+      {% assign urlPath = request.path %}
+      {% if template.name == 'collection' %}
+        {% assign hadASizeParameter = 'false' %}
+        {% assign hadMoreThanOneParameter = 'false' %}
+        {% if canonicalURL contains '+' %}
+          {% assign hadMoreThanOneParameter = 'true' %}
+          {% assign collectionSplit = canonicalURL | split: 'collections/' | last %}
+          {% assign trimPlus = collectionSplit | split: "+" %}
+          {% assign trimPlusToUse = trimPlus[0] %}
+          {% if trimPlusToUse contains 'size-' %}
+            {% assign hadASizeParameter = 'true' %}
+            {% assign trimPlusToUse = trimPlus[1] %}
+          {% endif %}
+          {% assign canonicalURL = shop.url | append: '/collections/' | append: trimPlusToUse %}
+        {% endif %}
+        {% if canonicalURL contains '/size-' %}
+          {% assign hadASizeParameter = 'true' %}
+          {% assign canonicalURL = canonicalURL | split: '/size-' | first | append: '/all' %}
+          {% assign urlPath = urlPath | split: '/size-' | first | append: '/all' %}
+        {% endif %}
+        {% if canonicalURL contains '?page' %}
+          {% assign canonicalURL = canonicalURL | split: '?page' | first %}
+          {% assign urlPath = urlPath | split: '?page' | first %}
+        {% endif %}
+      {% endif %}
+      {% if template.name == 'list-collections' %}
+        {% assign canonicalURL = canonicalURL | append: '/all' %}
+        {% assign urlPath = urlPath | append: '/all' %}
+      {% endif %}
+
+      {% if settings.app_wk_enabled %}
+      {% if template.name != 'index' %}
+        {% include 'appmate-wishlist-king' %}
+      {% endif %}
+      {% endif %}
+
+
+      {% assign robotsIndex = '<meta name="robots" content="index, follow">' %}
+
+      {% if template.name == 'collection' %}
+      {% if collection.handle == 'saletemplate' %}
+      {% assign robotsIndex = '<meta name="robots" content="noindex, follow">' %}
+      {% endif %}
+      {% if hadMoreThanOneParameter == 'true' %}
+      {% assign robotsIndex = '<meta name="robots" content="noindex, follow">' %}
+      {% elsif hadASizeParameter == 'true' %}
+      {% assign robotsIndex = '<meta name="robots" content="noindex, follow">' %}
+      {% endif %}
+      {% if current_tags != blank %}
+      {% assign currentTagHandle = current_tags | handleize %}
+      {% assign tagNoindex = 'noindex-' | append: currentTagHandle %}
+      {% if collection.metafields.chinti[tagNoindex] %}
+      {% assign robotsIndex = '<meta name="robots" content="noindex, follow">' %}
+      {% endif %}
+      {% endif %}
+
+
+      {% if current_tags != blank %}
+      {% assign hasMetaData = 'false' %}
+      {% if collection.metafields.chinti[metaTitle] %}
+      {% assign hasMetaData = 'true' %}
+      {% endif %}
+      {% if collection.metafields.chinti[metaDesc] %}
+      {% assign hasMetaData = 'true' %}
+      {% endif %}
+      {% if hasMetaData == 'false' %}
+      {% assign robotsIndex = '<meta name="robots" content="noindex, follow">' %}
+      {% assign canonicalURL = shop.url | append: '/collections/' | append: collection.handle %}
+      {% assign urlPath =  '/collections/' | append: collection.handle  %}
+      {% endif %}
+      {% endif %}
+
+      {% endif  %}
+
+      {% if template == "page.journal-drafts" %}
+      {% assign robotsIndex = '<meta name="robots" content="noindex, follow">' %}
+
+      {% endif %}
+
+      {{robotsIndex}}
+      <link rel="canonical" href="{{ canonicalURL }}" />
+
+
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="mobile-web-app-capable" content="yes">
+      <meta name="apple-mobile-web-app-capable" content="yes">
+      <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
+      <meta name="language" content="english">
+      <link rel="preconnect" href="//www.google-analytics.com">
+      <link rel="preconnect" href="//foursixty.com">
+      <link rel="preconnect" href="//ajax.googleapis.com">
+      <link rel="preconnect" href="//cdn.shopify.com">
+      <meta name="robots" content="noodp,noydir">
+      <meta name="format-detection" content="telephone=no">
+      {% if template == "index" %}
+      {% if page_description %}
+      <meta itemprop="description" content="{{ page_description }}" />
+      {%else%}
+      {% if template == "product" %}
+      <meta name="description" content="Shop {{product.title}} {{product.type}} at {{ shop.name }}." />
+      {% elsif template == "collection" %}
+      <meta name="description" content="Discover {{collection.title}} at {{ shop.name }} - Shop our {{collection.title}} collection now." />
+      {%else%}
+      {% endif %}
+      {% endif %}
+      <meta itemprop="name" content="{{ shop.name }}" />
+      {% endif %}
+
+      {% include 'open-graph-tags' %} {% include 'twitter-card' %} {{ content_for_header }}
+
+      <!-- {{ 'style.scss.css' | asset_url | stylesheet_tag }} -->
+      {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+      {{ 'social/social-icons.css' | global_asset_url | stylesheet_tag }}
+
+      <!--[if lt IE 9]>{{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}<![endif]-->
+      {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+      {{ 'shopify_common.js' | shopify_asset_url | script_tag }} {% if template contains 'customers' %} {{ 'customer_area.js' | shopify_asset_url | script_tag }} {% endif %}
+
+      <!-- Additional Shopify helpers that will likely be added to the global shopify_common.js some day soon. -->
+
+      {{ 'option_selection.js' |  shopify_asset_url | script_tag }}
+
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ 'apple-touch-icon.png' | asset_url }}">
+      <link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32x32.png' | asset_url }}">
+      <link rel="icon" type="image/png" sizes="16x16" href="{{ 'favicon-16x16.png' | asset_url }}">
+      <link rel="manifest" href="{{ 'site.webmanifest' | asset_url }}">
+      <link rel="mask-icon" href="{{ 'safari-pinned-tab.svg' | asset_url }}" color="#ffffff">
+      <link rel="shortcut icon" href="{{ 'favicon.ico' | asset_url }}">
+      <meta name="msapplication-TileColor" content="#ffffff">
+      <meta name="msapplication-config" content="{{ 'browserconfig.xml' | asset_url }}">
+      <meta name="theme-color" content="#ffffff">
+
+      <link rel="alternate" href="https://www.chintiandparker.com{{ urlPath }}" hreflang="en-gb">
+      <link rel="alternate" href="https://www.us.chintiandparker.com{{ urlPath }}" hreflang="en-us">
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-al" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ad" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-am" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-at" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-by" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-be" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ba" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-bg" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ch" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-cy" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-cz" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-de" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-dk" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ee" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-es" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-fo" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-fi" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-fr" />
+
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ge" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-gi" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-gr" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-hu" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-hr" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ie" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-is" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-it" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-lt" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-lu" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-lv" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-mc" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-mk" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-mt" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-no" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-nl" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-pl" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-pt" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ro" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ru" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-se" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-si" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-sk" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-sm" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-tr" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-ua" />
+      <link rel="alternate" href="https://www.eu.chintiandparker.com{{ urlPath }}" hreflang="en-va" />
+      <link rel="alternate" href="https://www.chintiandparker.com{{ urlPath }}" hreflang="x-default" />
+
+      {% include 'gtm-global' %}
+      {% include 'gtm-head' %}
+
+      <!--begin-bc-sf-filter-css-->
+      {% include 'bc-sf-filter-style' %}
+      <!--end-bc-sf-filter-css-->
+
+      {%comment%}
+      <!-- START Rakuten Marketing Tracking -->
+      <script type="text/javascript" src="//intljs.rmtag.com/117870.ct.js"></script>
+      <!-- END Rakuten Marketing Tracking -->
+      {%endcomment%}
+
+      <script>
+          window.theme = {
+              backInStock: {
+                  error: {{ 'products.product.back_in_stock.error_message' | t | json }},
+                  success: {{ 'products.product.back_in_stock.success_message' | t | json }}
+              }
+          }
+      </script>
+
+      {% if settings.enable_harper_concierge  %}
+        <link rel="stylesheet" href="{{ 'harper-concierge.scss' | asset_url }}">
+      {% endif %}
+
+      <!-- globale_css_include -->
+      {% include 'globale-css-include' %}
+    </head>
+    {%- assign additionalClass = '' -%}
+    {%- if template == 'collection' -%}
+    {%- assign additionalClass = 'mainNavOver ' -%}
+    {%- endif -%}
+
+    {% assign thisStoreSplit = shop.url | split: '.'  %}
+    {% assign thisStoreSplit = thisStoreSplit[1] | capitalize %}
+
+
+    {% assign collectionHandle = '' %}
+    {% if collection.handle %}
+    {% assign collectionHandle = ' data-collection-handle="' | append: collection.handle | append: '"' %}
+    {% endif %}
+
+    <body id="{{ page_title | handle }}" class="{{additionalClass}}{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} storeView{{thisStoreSplit}}"{{collectionHandle}}>
+<script>window.KlarnaThemeGlobals={};{%case template.name%} {%when"product"%} window.KlarnaThemeGlobals.data_purchase_amount={{product.first_available_variant.price}};window.KlarnaThemeGlobals.productVariants={{product.variants|json}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%when"cart"%} window.KlarnaThemeGlobals.data_purchase_amount={{cart.total_price}};window.KlarnaThemeGlobals.documentCopy=document.cloneNode(true);{%endcase%}</script>
+
+        {% if template.name == 'index' %}
+            <link rel="preload" href="{{ settings.mobile_image | img_url: '500x' }} 1x,{{ settings.mobile_image | img_url: '1000x' }} 2x,{{ settings.mobile_image | img_url: '1500x' }} 3x" as="image" media="(max-width: 47.9rem)">
+            <link rel="preload" href="{{ settings.desktop_image | img_url: '2560x' }} 1x,{{ settings.desktop_image | img_url: '5120x' }} 2x,{{ settings.desktop_image | img_url: '7680x' }} 3x" as="image" media="(min-width: 48rem)">
+        {% endif %}
+        {% if template.name == 'product' %}
+            <link rel="preload" href="{{ product.featured_image | img_url: '640x960', crop: 'center' }} 1x,{{ product.featured_image | img_url: '640x960',scale: 2, crop: 'center' }} 2x" as="image" media="(min-width: 80rem)">
+            <link rel="preload" href="{{ product.featured_image | img_url: '390x', crop: 'center'}} 1x,{{ product.featured_image | img_url: '780x',scale:2, crop: 'center' }} 2x" as="image" media="(max-width: 47.9rem)">
+        {% endif %}
+
+      <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P4X6QRL"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+
+      {% if shop.permanent_domain == 'chinti-parker.myshopify.com' %}
+        <script
+          async
+          src="https://eu-library.klarnaservices.com/lib.js"
+          data-client-id="3a3ea636-46c5-5491-9130-f8e1051566fd"
+        ></script>
+      {% endif %}
+
+      {% if shop.permanent_domain == 'chinti-parker-usd.myshopify.com' %}
+        <script
+          async
+          src="https://na-library.klarnaservices.com/lib.js"
+          data-client-id="d3ffb4cf-7b53-5dbc-94e3-ddc5b66dedc0"
+        ></script>
+      {% endif %}
+
+      {%- comment -%}
+          To refactor the klarna implementation as per comments on
+          https://bitbucket.org/strawberryweb/chintiandparker-theme/pull-requests/43/cp-245-add-klarna-messaging-for-us-store
+      {%- endcomment -%}
+
+      <div id="wrapper">
+        {%- include 'store-view-setup' -%}
+
+        {%- section 'notification-ribbon' -%}
+
+        {%- section 'header' -%}
+
+        <div id="offCanvasWrapper">
+          <main class="main-content" id="MainContent">
+            {{ content_for_layout }}
+          </main>
+
+          {% section 'footer' %}
+
+        </div>
+      </div>
+
+      <!--[if lt IE 8]><p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+      {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+      {{ 'store.js' | asset_url | script_tag }}
+      {{ 'webpack.js' | asset_url | script_tag }}
+      {% assign templateType = template | split:'.' %}
+      {% unless templateType[0] == 'blog' or templateType[0] == 'article' %}
+      {{ 'shop.js' | asset_url | script_tag }}
+      {%endunless%}
+      {{ 'customer.js' | asset_url | script_tag }}
+      {{ 'timber.js' | asset_url | script_tag }}
+
+      {% if settings.ajax_cart_method == "drawer" %}
+      {{ 'handlebars.min.js' | asset_url | script_tag }}
+      {% include 'ajax-cart-template' %}
+      {{ 'ajax-cart.js' | asset_url | script_tag }}
+      <script>
+        jQuery(document).ready(function() {
+          ajaxCart.init({
+            formSelector: '#AddToCartForm',
+            cartContainer: '#CartContainer',
+            addToCartSelector: '#AddToCart',
+            cartCountSelector: '#CartCount',
+            cartCostSelector: '#CartCost',
+            moneyFormat: {{ shop.money_format | json }}
+          });
+            ajaxCart.load();
+          });
+
+          jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
+            // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
+
+          });
+
+      </script>
+      {% endif %}
+
+      <script>
+        jQuery('html').removeClass('no-js').addClass('js');
+      </script>
+
+      {% if request.path contains '/challenge' %}
+        {% render 'challenge-scroll-to-top' %}
+      {% endif %}
+
+      {% include 'remove-sold-out' %}
+      {% include 'linked-options' %}
+
+      <!--begin-bc-sf-filter-js-->
+      {% if template.name != 'index' %}
+        {% include 'bc-sf-filter' %}
+      {% endif %}
+      <!--end-bc-sf-filter-js-->
+
+      {% section 'cookie-message' %}
+      {% section 'newsletter-sign-up' %}
+
+      {%comment%}
+      {% include 'rakuten' %}
+      {%endcomment%}
+
+      <script src="{{ 'lazysizes.js' | asset_url }}" async></script>
+
+      <!-- CPJ-208 -->
+      <script type="text/javascript">
+        (function(s,m,a,r,t){
+          if(s.hasOwnProperty("$smcInstall"))return!1;s.$smcInstall=1;
+          s[r]=s[r]||[];var f=m.getElementsByTagName(a)[0],j=m.createElement(a),dl=r!='dataLayer'?'&r='+r:'';
+          j.async=true;j.src='//smct.co/tm/?t='+t+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','chintiandparker.com');
+      </script>
+
+      {% if settings.enable_harper_concierge %}
+        {% render 'harper-popup' %}
+        {% render 'harper-concierge-script' %}
+      {% endif %}
+
+      <!-- globale_js_include -->
+      {% include 'globale-js-include' %}
+      {% include 'globale-order' %}
+    </body>
+</html>
