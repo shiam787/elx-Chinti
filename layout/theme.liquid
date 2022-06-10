@@ -163,7 +163,14 @@
       <meta itemprop="name" content="{{ shop.name }}" />
       {% endif %}
 
-      {% include 'open-graph-tags' %} {% include 'twitter-card' %} {{ content_for_header }}
+      {% include 'open-graph-tags' %} {% include 'twitter-card' %} {%comment%}{{ content_for_header }}{%endcomment%}
+      
+       {% capture h_content %}
+  		{{ content_for_header }}
+ 		{% endcapture %}
+ {{ h_content | remove: '<meta name="facebook-domain-verification" content="27blhk2ugmopn0e2hirairhcphulfe">' | remove: '<meta name="facebook-domain-verification" content="56ozivgcqopmceba1i1zbj5qk5r96d">' }} 
+      
+      
 
       <!-- {{ 'style.scss.css' | asset_url | stylesheet_tag }} -->
       {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
