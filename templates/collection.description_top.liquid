@@ -33,8 +33,9 @@ Example: the h2 element should have the same size and color in:
 - page content
 - blog post
 {% endcomment %}
-
-{% assign collectionImage = 'bg-collection.jpg' | asset_url %}
+ 
+{% comment %} {% assign collectionImage = 'bg-collection.jpg' | asset_url %} {% endcomment %}
+{% assign collectionImage = '' %}
 {% if collection.image %}{% assign collectionImage = collection.image | img_url %}{% endif %}
 
 <div class="collection-filters">
@@ -57,7 +58,7 @@ Example: the h2 element should have the same size and color in:
   {% endif %}
 {% endif %}
 
-<div class="page-title collection-title collection-description-adjacent">
+<div class="page-title collection-title collection-description-adjacent" data-img="{{ collectionImage }}">
     <div class="wrapper">
         <h1>{{ pageTitle }}</h1>
     </div>
