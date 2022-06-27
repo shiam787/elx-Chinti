@@ -58,7 +58,7 @@ Example: the h2 element should have the same size and color in:
   {% endif %}
 {% endif %}
 
-<div class="page-title collection-title collection-description-adjacent" data-img="{{ collectionImage }}">
+<div class="page-title collection-title collection-description-adjacent" data-img="{{ collectionImage | default: 'null' }}">
     <div class="wrapper">
         <h1>{{ pageTitle }}</h1>
     </div>
