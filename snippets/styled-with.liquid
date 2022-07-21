@@ -1,4 +1,8 @@
 <h1>Hello world</h1>
+<script>
+console.log({{product.metafields.product.styled_with}});
+
+</script>
 {{product.metafields.product.styled_with}}
      {% for related_product in product.metafields.product.styled_with.value %}
                   {{ related_product.title }}
