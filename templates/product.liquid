@@ -259,7 +259,7 @@
 
 														{% unless handlesFound contains innerProduct.handle %}
 
-{% assign markupToOutput = markupToOutput | append: '<li><a data-color='{{innerProductTitleColour}}' class="image" href="/products/' | append: innerProduct.handle | append: '">'  %}
+{% assign markupToOutput = markupToOutput | append: '<li><a class="image" href="/products/' | append: innerProduct.handle | append: '">'  %}
 
 {% assign thisHex = 'ededed' %}
 {% if innerProduct.metafields.c-p.swatch %}
