@@ -7,20 +7,7 @@
             <h2 class="blockHeader">Styled With</h2>
             <div class="product-grid clearfix">
               {% for styled_product in product.metafields.product.styled_with.value %}
-                <div class="item" id="">
-                  <div class="product-image-wrap">
-                    <a class="image" href="/collections/all/products/blue-cotton-cashmere-dress">
-                      <img src="https://cdn.shopify.com/s/files/1/0040/7057/2147/products/KX145A_Blue-Dress_S_fd65052a-0d00-4701-bc0e-60578930436a_480x720_crop_center.jpg?v=1647273193" loading="lazy" importance="low" alt="Blue Cotton-Cashmere Dress">
-                    </a>
-                  </div>
-                  <div class="product-caption">
-                    <h2 class="product-name">
-                      <a href="/collections/all/products/blue-cotton-cashmere-dress">{{styled_product.title}}</a>
-                    </h2>
-                    <span class="product-price"><s><span class="money">£275</span></s></span>
-                    <span class="product-price on-sale on-sale-margin"><span class="money">£206.25</span></span>
-                  </div>
-              </div>
+                {{styled_product.title}}
               {% endfor %}
             </div>
           
