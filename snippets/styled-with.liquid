@@ -3,7 +3,9 @@
 <div id="styledWith" class="active">
     <div class="product-list">
         <div class="wrapper">
+          <div class='blockheader-wrapper'>
             <h2 class="blockHeader">Styled With</h2>
+          </div>
             <div class="product-grid clearfix">
               {% for styled_product in product.metafields.product.styled_with.value %}
                 <div class="item" id="">
@@ -37,6 +39,9 @@
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
+    }
+    #styledWith .blockheader-wrapper{
+      max-width:76em;
     }
     #styledWith h2.blockHeader {
         text-align: center;
