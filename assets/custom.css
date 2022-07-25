@@ -1,3 +1,6 @@
 .globale_popup_wrapper{
   display:none;
 }
+.globale_overlay{
+  display:none;
+}
