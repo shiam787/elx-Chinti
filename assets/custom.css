@@ -1,5 +1,5 @@
 body{
-  overflow:unset;
+  overflow:unset !important;
 }
 .globale_popup_wrapper{
   display:none;
