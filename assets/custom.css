@@ -1,3 +1,6 @@
+body{
+  overflow:unset;
+}
 .globale_popup_wrapper{
   display:none;
 }
