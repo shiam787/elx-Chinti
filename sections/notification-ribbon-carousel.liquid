@@ -1,3 +1,15 @@
+{%- if section.settings.show_notification == true -%}
+<div id="notificationRibbon">
+<p>
+    {% if section.settings.notification_link != blank %}<a href="{{section.settings.notification_link}}">{%endif%}
+  {{section.settings.notification_text | escape}}
+  {% if section.settings.notification_link != blank %}</a>{%endif%}
+</p>
+</div>
+{%- endif -%}
+
+
+
 {% schema %}
   {
     "name": "Section name",
