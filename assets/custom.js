@@ -8,7 +8,8 @@ if($('.notification-carousel')){
       smartSpeed:450,
       loop:true,
       dots:false,
-      autoplay:true
+      autoplay:true,
+      mouseDrag:false
   });
 }
 
