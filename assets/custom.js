@@ -12,5 +12,8 @@ if($('.notification-carousel')){
       mouseDrag:false,
 
   });
+  $(window).on('focus', function () {
+    $('.owl-next').trigger('click');
+});
 }
 
