@@ -26,7 +26,7 @@
             <a 
                 {% assign anchor_title=link.title | downcase %}
                 {% if anchor_title=='sale' %}
-                    style="color:red";
+                    style="color:{{ sale_colour }}";
                 {% else %}
                     style="color:{{inner_text_colour }}";
                 {% endif %}
