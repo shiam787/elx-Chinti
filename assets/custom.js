@@ -10,7 +10,6 @@ if($('.notification-carousel')){
       dots:false,
       autoplay:true,
       mouseDrag:false,
-      autoplayHoverPause:true
 
   });
 }
