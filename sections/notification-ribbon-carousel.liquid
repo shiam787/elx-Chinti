@@ -1,24 +1,67 @@
 {%- if section.settings.show_notification == true -%}
-<div id="notificationRibbon">
-<p>
-    {% if section.settings.notification_link != blank %}<a href="{{section.settings.notification_link}}">{%endif%}
-  {{section.settings.notification_text | escape}}
-  {% if section.settings.notification_link != blank %}</a>{%endif%}
-</p>
-</div>
+    <div id="notificationRibbon" class="owl-carousel owl-theme notification-carousel">
+        {% for block in section.blocks %}    
+            <!-- Single Notfication Item -->
+            <p class="item">
+                {% if block.settings.notification_link != blank %}<a href="{{block.settings.notification_link}}">{%endif%}
+                {{block.settings.notification_text | escape}}
+                {% if block.settings.notification_link != blank %}</a>{%endif%}
+            </p>
+            <!--// Single Notfication Item -->
+        {% endfor %}
+    </div>
 {%- endif -%}
 
 
 
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+    "name": "Site Notification Message",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_notification",
+            "label": "Show Notification",
+            "default": true
+        }
+    ],
+    "blocks":[
+        {
+            "type": "notification-item",
+            "name": " Notification Item",
+            "settings": [
+                {
+                    "id": "notification_text",
+                    "type": "text",
+                    "label": "Notification Text"
+                },
+                {
+                    "id": "notification_link",
+                    "type": "url",
+                    "label": "Notification Link"
+                }
+
+            ]
+        }
+
+    ]
+}
 {% endschema %}
 
 {% stylesheet %}
 {% endstylesheet %}
 
 {% javascript %}
+$('.notification-carousel').owlCarousel({
+    animateOut: 'slideOutDown',
+    animateIn: 'flipInX',
+    items:1,
+    margin:30,
+    stagePadding:30,
+    smartSpeed:450,
+    loop:true,
+    dots:false,
+    autoplay:true
+});
+
 {% endjavascript %}
