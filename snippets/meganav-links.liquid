@@ -23,7 +23,13 @@
                 {% if emphasised %} meganav-menu__item--emphasised{% endif %}
             "
         >
-            <a style="color:{{inner_text_colour }}"
+            <a 
+                {% assign anchor_title=link.title | downcase %}
+                {% if anchor_title=='sale' %}
+                    style="color:red";
+                {% else %}
+                    style="color:{{inner_text_colour }}";
+                {% endif %}
                 href="{{ link.url }}"
                 class="meganav-menu__link"
                 {% if link.links.size > 0 %} data-meganav-submenu-trigger {% endif %}
