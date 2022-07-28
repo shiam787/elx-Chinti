@@ -4524,7 +4524,7 @@
           "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d": {
             "type": "notification-item",
             "settings": {
-              "notification_text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+              "notification_text": "Lorem Ipsum is simply dummy text",
               "notification_link": "shopify:\/\/pages\/account"
             }
           }
