@@ -95,7 +95,7 @@
             "settings": {
               "title": "New",
               "title_url": "shopify:\/\/collections\/new-season",
-              "title_colour": "rgba(0,0,0,0)",
+              "title_colour": "#ce3333",
               "mobile_title_colour": false,
               "subheadings_colour": "rgba(0,0,0,0)",
               "linklist": "new-in",
