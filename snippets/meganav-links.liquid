@@ -23,7 +23,7 @@
                 {% if emphasised %} meganav-menu__item--emphasised{% endif %}
             "
         >
-            <a
+            <a style="color:{{inner_text_colour }}"
                 href="{{ link.url }}"
                 class="meganav-menu__link"
                 {% if link.links.size > 0 %} data-meganav-submenu-trigger {% endif %}
