@@ -10,7 +10,8 @@ if($('.notification-carousel')){
       dots:false,
       autoplay:true,
       mouseDrag:false,
-     animateOut:true
+     animateOut:true,
+      fluidSpeed:450
 
   });
   $(window).on('focus', function () {
