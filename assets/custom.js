@@ -10,6 +10,7 @@ if($('.notification-carousel')){
       dots:false,
       autoplay:true,
       mouseDrag:false,
+      mergeFit:true
 
   });
   $(window).on('focus', function () {
