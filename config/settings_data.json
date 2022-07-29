@@ -4527,27 +4527,11 @@
               "notification_text": "Sign up to our newsletter to receive 20% off your first full price order.",
               "notification_link": "shopify:\/\/pages\/account"
             }
-          },
-          "ce65651c-716a-4d5b-88bd-abd97626f4db": {
-            "type": "notification-item",
-            "settings": {
-              "notification_text": "New designer dress",
-              "notification_link": ""
-            }
-          },
-          "1b3806bd-0307-415e-bd72-66437aed792d": {
-            "type": "notification-item",
-            "settings": {
-              "notification_text": "test",
-              "notification_link": "https:\/\/www.chintiandparker.com\/collections\/peanuts22"
-            }
           }
         },
         "block_order": [
           "e397008d-333d-4d5c-8f3f-29569c5eca1d",
-          "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d",
-          "ce65651c-716a-4d5b-88bd-abd97626f4db",
-          "1b3806bd-0307-415e-bd72-66437aed792d"
+          "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d"
         ],
         "settings": {
           "show_notification": true
