@@ -5,11 +5,12 @@ if($('.notification-carousel')){
       items:1,
       margin:0,
       stagePadding:0,
-      smartSpeed:50,
+      smartSpeed:450,
       loop:true,
       dots:false,
       autoplay:true,
       mouseDrag:false,
+     animateOut:true
 
   });
   $(window).on('focus', function () {
