@@ -8,7 +8,7 @@ if($('.notification-carousel')){
       smartSpeed:450,
       loop:true,
       dots:false,
-      autoplay:false,
+      autoplay:true,
       mouseDrag:false,
 
   });
