@@ -4524,22 +4524,14 @@
           "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d": {
             "type": "notification-item",
             "settings": {
-              "notification_text": "Sign up to our newsletter to receive 20% off your first full price order.",
+              "notification_text": "Sign up to our newsletter to receive 20% off your first full price order.085763085763085763",
               "notification_link": "shopify:\/\/pages\/account"
-            }
-          },
-          "ae472b1a-81bc-433c-81ff-9c236996dd08": {
-            "type": "notification-item",
-            "settings": {
-              "notification_text": "new dress",
-              "notification_link": "https:\/\/www.chintiandparker.com\/products\/pink-dip-dye-cashmere-sweater"
             }
           }
         },
         "block_order": [
           "e397008d-333d-4d5c-8f3f-29569c5eca1d",
-          "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d",
-          "ae472b1a-81bc-433c-81ff-9c236996dd08"
+          "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d"
         ],
         "settings": {
           "show_notification": true
