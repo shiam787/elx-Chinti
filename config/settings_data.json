@@ -4524,7 +4524,7 @@
           "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d": {
             "type": "notification-item",
             "settings": {
-              "notification_text": "Sign up to our newsletter to receive 20% off your first full price order.085763085763085763",
+              "notification_text": "Sign up to our newsletter to receive 20% off your first full price order.",
               "notification_link": "shopify:\/\/pages\/account"
             }
           }
