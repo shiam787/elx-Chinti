@@ -3,12 +3,12 @@ if($('.notification-carousel')){
       animateOut: 'slideOutDown',
       animateIn: 'flipInX',
       items:1,
-      margin:0,
+      margin:30,
       stagePadding:0,
       smartSpeed:450,
       loop:true,
       dots:false,
-      autoplay:true,
+      autoplay:false,
       mouseDrag:false,
 
   });
