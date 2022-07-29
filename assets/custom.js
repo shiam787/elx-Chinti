@@ -1,6 +1,5 @@
 if($('.notification-carousel')){
   $('.notification-carousel').owlCarousel({
-      animateOut: 'slideOutDown',
       animateIn: 'flipInX',
       items:1,
       margin:0,
