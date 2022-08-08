@@ -4536,10 +4536,29 @@
         "settings": {
           "show_notification": true
         }
+      },
+      "1659953583a7496025": {
+        "type": "custom-content",
+        "blocks": {
+          "58a04032-7352-48e8-8cbb-af837e5f8c2c": {
+            "type": "html",
+            "settings": {
+              "code": "<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/\/c.zmags.com\/static\/styles.css\"><div class=\"zmags-viewer-container\" data-group=\"62ed2333f6b59306b31accf2\" data-company=\"5d9c5d29ad04231044707d0c\" data-speed=\"1\"><\/div><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/wrapper.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/manifest.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/vendor.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/client.js\"><\/script>",
+              "width": "50%"
+            }
+          }
+        },
+        "block_order": [
+          "58a04032-7352-48e8-8cbb-af837e5f8c2c"
+        ],
+        "settings": {
+          "title": ""
+        }
       }
     },
     "content_for_index": [
       "1645796969a221777d",
+      "1659953583a7496025",
       "1650645325cb37919f",
       "16468355153a3f919c",
       "16433858765b8b9b96",
