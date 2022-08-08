@@ -4290,7 +4290,7 @@
             "type": "html",
             "settings": {
               "code": "<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/\/c.zmags.com\/static\/styles.css\"><div class=\"zmags-viewer-container\" data-group=\"62ed270ef6b59306b31ad13a\" data-company=\"5d9c5d29ad04231044707d0c\" data-speed=\"1\"><\/div><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/wrapper.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/manifest.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/vendor.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/client.js\"><\/script>",
-              "width": "50%"
+              "width": "100%"
             }
           }
         },
