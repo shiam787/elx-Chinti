@@ -4280,9 +4280,17 @@
           },
           "cfb6c2d2-61c3-44d0-8bd1-52f75bba26f7": {
             "type": "html",
+            "disabled": true,
             "settings": {
               "code": "<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/\/c.zmags.com\/static\/styles.css\"><div class=\"zmags-viewer-container\" data-group=\"626150fb7826497d85d053d2\" data-company=\"5d9c5d29ad04231044707d0c\" data-speed=\"1\"><\/div><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/wrapper.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/manifest.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/vendor.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/client.js\"><\/script>",
               "width": "100%"
+            }
+          },
+          "2323b377-a940-4d66-a595-f66d7bcaf1c2": {
+            "type": "html",
+            "settings": {
+              "code": "<link rel=\"stylesheet\" type=\"text\/css\" href=\"\/\/c.zmags.com\/static\/styles.css\"><div class=\"zmags-viewer-container\" data-group=\"62ed270ef6b59306b31ad13a\" data-company=\"5d9c5d29ad04231044707d0c\" data-speed=\"1\"><\/div><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/wrapper.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/manifest.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/vendor.js\"><\/script><script defer type=\"text\/javascript\" src=\"\/\/c.zmags.com\/static\/client.js\"><\/script>",
+              "width": "50%"
             }
           }
         },
@@ -4290,7 +4298,8 @@
           "a68ef71e-4f56-4bc4-9d77-31d2b55bd1eb",
           "698fb0b0-24f1-4253-9c02-e6b9eadf4dfe",
           "7a4b184c-f5dd-4fc6-a133-94a2e6f69829",
-          "cfb6c2d2-61c3-44d0-8bd1-52f75bba26f7"
+          "cfb6c2d2-61c3-44d0-8bd1-52f75bba26f7",
+          "2323b377-a940-4d66-a595-f66d7bcaf1c2"
         ],
         "settings": {
           "title": ""
@@ -4478,6 +4487,7 @@
       },
       "1650645325cb37919f": {
         "type": "banner-twocolumns",
+        "disabled": true,
         "blocks": {
           "1650645325cb37919f-0": {
             "type": "bannergrid-twocolumns",
