@@ -5,10 +5,10 @@ Important notes about pagination:
 {% endcomment %}
 
 <style>
-.collection-top-banner .collection-info-wrapper .modal-hide {
-  visibility: hidden;
-  opacity: 0;
-}
+  .collection-top-banner .collection-info-wrapper .modal-hide {
+    visibility: hidden;
+    opacity: 0;
+  }
 </style>
 
 {% assign products_per_page = settings.products_per_row | times: settings.number_of_rows %}
@@ -43,7 +43,7 @@ Example: the h2 element should have the same size and color in:
 
 {% comment %} {% assign collectionImage = 'bg-collection.jpg' | asset_url %} {% endcomment %}
 {% assign collectionImage = '' %}
-{% if collection.image %}{% assign collectionImage = collection.image | img_url :'master' %}{% endif %}
+{% if collection.image %}{% assign collectionImage = collection.image | img_url : 'master' %}{% endif %}
 
 <div class="collection-filters">
     <a class="title" href="#">Filters</a>
@@ -72,12 +72,11 @@ Example: the h2 element should have the same size and color in:
         <div class="collection-tittle">
           <h1>{{ pageTitle }}</h1>
         </div>
-        <div class="collection-description">{{ pageDescription | truncate: 400 }}</div>
-      {% if pageDescription.size > 400 %}
+        <div class="collection-description">{{ pageDescription }}</div>
+
           <div class='read-more-less'>
             <span class='more-btn'>Read More + </span>
           </div>
-      {% endif %}
 
       {% if pageDescription.size > 400 %}
           <div class="collection-info-modal modal-hide">
@@ -355,12 +354,18 @@ Example: the h2 element should have the same size and color in:
 
 {% comment %} Collection top banner script {% endcomment %}
 <script>
+  const collDesp = document.querySelector('.collection-top-banner .collection-description');
   const moreBtn = document.querySelector('.collection-top-banner  span.more-btn');
   const lessBtn = document.querySelector('.collection-top-banner  span.less-btn');
   const closeBtn = document.querySelector('.collection-top-banner  .readmore-close');
   const modalX = document.querySelector('.collection-top-banner  .collection-info-modal-close');
   const collModal = document.querySelector('.collection-top-banner .collection-info-modal');
   const collOverlay = document.querySelector('.collection-top-banner .collection-overlay');
+
+  if (collDesp.textContent.trim().length < 400) {
+        collDesp.style.maxHeight = "unset";
+        moreBtn.style.display = 'none'
+      }
 
       moreBtn.addEventListener('click', function () {
         collModal.classList.remove('modal-hide');
@@ -455,6 +460,8 @@ Example: the h2 element should have the same size and color in:
   font-weight: 400;
   padding-top: 20px;
   line-height: 18px;
+  max-height: 55px;
+  overflow: hidden;
   transition: max-height 0.4s ease-out;
 }
   .collection-top-banner .collection-info-wrapper .collection-description p {
@@ -468,7 +475,6 @@ Example: the h2 element should have the same size and color in:
   font-weight: 400;
   line-height: 18px;
   color: #111111;
-  margin-top: 0.5625rem;
 }
   .collection-top-banner .collection-info-wrapper .collection-description .descriptionWrapper {
   padding: 0;
