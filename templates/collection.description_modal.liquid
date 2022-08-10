@@ -9,6 +9,17 @@ Important notes about pagination:
 {% assign products_per_row = settings.products_per_row | times: 1 %}
 {% assign products_per_row = numbers[products_per_row] | strip | append: '-per-row' %}
 
+{% assign isEmptySaleCollection = 'false' %}
+{% if collection.products_count == 0 %}
+  {% if collection.handle contains 'sale'%}
+    {% assign isEmptySaleCollection = 'true' %}
+  {% endif%}
+{% endif%}
+
+{% if isEmptySaleCollection == 'true' %}
+  {% section 'empty-sale' %}
+{%else%}
+
 {% paginate collection.products by products_per_page %}
 
 {% comment %}
@@ -23,229 +34,270 @@ Example: the h2 element should have the same size and color in:
 - blog post
 {% endcomment %}
 
-
-{% assign collectionImage = 'bg-collection.jpg' | asset_url %}
+{% comment %} {% assign collectionImage = 'bg-collection.jpg' | asset_url %} {% endcomment %}
+{% assign collectionImage = '' %}
 {% if collection.image %}{% assign collectionImage = collection.image | img_url %}{% endif %}
 
+<div class="collection-filters">
+    <a class="title" href="#">Filters</a>
+    {% include 'filter-by-tags' %}
+</div>
 
 {% comment %}
 <div class="page-title collection-title" style="background-image: url({{ collectionImage }});">
 {% endcomment %}
-<div class="page-title collection-title">
-    <div class="wrapper">
-        <h1>{{ collection.title }}</h1>
+
+{% assign pageTitle = collection.title %}
+{% assign pageDescription = collection.description %}
+
+{% if current_tags != blank %}
+  {% assign currentTagHandle = current_tags | handleize %}
+  {% assign metaTitle = 'alt-title-' | append: currentTagHandle %}
+  {% if collection.metafields.chinti[metaTitle] %}
+    {% assign pageTitle = collection.metafields.chinti[metaTitle] %}
+  {% endif %}
+{% endif %}
+
+{% if collectionImage %}
+  <div class="collection-top-banner">
+    <div class="collection-info-wrapper">
+      <div class="collection-info">
+        <div class="collection-tittle">
+          <h1>{{ pageTitle }}</h1>
+        </div>
+        <div class="collection-description">{{ pageDescription | truncate: 400 }}</div>
+      {% if pageDescription.size > 400 %}
+          <div class='read-more-less'>
+            <span class='more-btn'>Read More + </span>
+          </div>
+      {% endif %}
+
+      {% if pageDescription.size > 400 %}
+          <div class="collection-info-modal modal-hide">
+            <span class="collection-info-modal-close">&times;</span>
+            <div class="collection-tittle">
+              <h1>{{ pageTitle }}</h1>
+            </div>
+            <div class="collection-description">{{ pageDescription }}</div>
+            <span class='less-btn'>Read Less - </span>
+          </div>
+          <div class='collection-overlay modal-hide'></div>
+      {% endif %}
+      </div>
     </div>
-</div>
+    <div class="collection-image-wrapper" style="background:url({{ collectionImage }})"></div>
+  </div>
 
+{% else %}
 
-  {% comment %}
+  <div class="page-title collection-title collection-description-adjacent"">
+      <div class="wrapper">
+          <h1>{{ pageTitle }}</h1>
+      </div>
+  </div>
+  {% if pageDescription.size > 0 %}
+    <div class="collection-description collection-description-top">
+      <div class="wrapper">
+        <div class="content">
+
+          <div class="descriptionWrapper">
+            {% assign descriptionParagraphs = pageDescription | split: '</p>' %}
+
+            {% if descriptionParagraphs.size > 1 %}
+                {{descriptionParagraphs[0] | strip_html }}
+            {% else %}
+              {{ pageDescription }}
+            {% endif %}
+          </div>
+          
+          {% if descriptionParagraphs.size > 1 %}
+            <a href="#read-more" class="read-more" data-description>Read more</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+{% endif %}
+
+{% comment %}
   get metafields c-p.cms_page_handles, c-p.cms_page_positions for banners
-  {% endcomment %}
-
+{% endcomment %}
 
 {% assign thisCollectionsBanners = '' %}
 {% assign thisCollectionsBannerPositions = '' %}
 {% assign collectionBannersUsed = '' %}
 
-
 {% if collection.metafields.c-p.cms_page_handles %}
-{% unless collection.metafields.c-p.cms_page_handles == blank %}
-{% assign thisCollectionsBanners = collection.metafields.c-p.cms_page_handles | split: "," %}
-{% assign thisCollectionsBannerPositions = collection.metafields.c-p.cms_page_positions | split: "," %}
-{% endunless %}
+  {% unless collection.metafields.c-p.cms_page_handles == blank %}
+    {% assign thisCollectionsBanners = collection.metafields.c-p.cms_page_handles | split: "," %}
+    {% assign thisCollectionsBannerPositions = collection.metafields.c-p.cms_page_positions | split: "," %}
+  {% endunless %}
 {% endif %}
 
-
-
-
 <div class="product-list">
-{% render 'sidebar-nav' %}
 
-<div class="wrapper">
+  {% render 'sidebar-nav' %}
+
+  <div class="wrapper">
+
   {% comment %}
   Collection sorting. Needs the JavaScript that is at the bottom of this file.
   {% endcomment %}
 
-  <div class="toolbar toolbar-product clearfix">
-    {% include 'breadcrumbs' %}
-    <div class="sorter">
-        <label for="sorter">Sort by</label>
+    <div class="toolbar toolbar-product clearfix">
+      {% include 'breadcrumbs' %}
+      <span class="items-count">{{ collection.products_count }} items</span>
+      <div class="sorter-wrapper">
+      <div class="sorter">
+          <label for="sorter">Sort by</label>
+          <div class="selectWrapper">
+            <select id="sorter" class="sort-by right">
+              <option value="manual">Featured</option>
+              <option value="price-ascending">Price: Low to High</option>
+              <option value="price-descending">Price: High to Low</option>
+              <option value="title-ascending">A-Z</option>
+              <option value="title-descending">Z-A</option>
+              <option value="created-ascending">Oldest to Newest</option>
+              <option value="created-descending">Newest to Oldest</option>
+              <option value="best-selling">Best Selling</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      {% include 'filter-by-tags' %}
+
+      {% comment %}
+      <div class="per-page">
+        <label for="view-per-page">View</label>
         <div class="selectWrapper">
-          <select id="sorter" class="sort-by right">
-            <option value="manual">Featured</option>
-            <option value="price-ascending">Price: Low to High</option>
-            <option value="price-descending">Price: Hight to Low</option>
-            <option value="title-ascending">A-Z</option>
-            <option value="title-descending">Z-A</option>
-            <option value="created-ascending">Oldest to Newest</option>
-            <option value="created-descending">Newest to Oldest</option>
-            <option value="best-selling">Best Selling</option>
+          <select id="view-per-page" class="right">
+            <option value="15">15 per page</option>
+            <option value="30">30 per page</option>
           </select>
         </div>
       </div>
+      {% endcomment %}
+
+    </div>
 
     {% comment %}
-    <div class="per-page">
-      <label for="view-per-page">View</label>
-      <div class="selectWrapper">
-        <select id="view-per-page" class="right">
-          <option value="15">15 per page</option>
-          <option value="30">30 per page</option>
-        </select>
+    Listing all tags within the current collection.
+    Shopify uses product tags to manage subcategories inside collections.
+    See 'How do I create subcategories of products?' at
+    http://bit.ly/1j1Dti4 for details.
+    {% endcomment %}
+
+    {% comment %}
+    {% if collection.all_tags.size > 0 %}
+    <ul class="subcategories clearfix clear">
+      <li class="{% unless current_tags %} active{% endunless %}">
+        {{ 'All' | link_to_remove_tag: current_tags.first }}
+      </li>
+      {% for tag in collection.all_tags %}
+      {% if current_tags contains tag %}
+      <li class="active">
+        {{ tag | link_to_remove_tag: tag }}
+      </li>
+      {% else %}
+      <li>
+        {{ tag | link_to_tag: tag }}
+      </li>
+      {% endif %}
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endcomment %}
+
+    <div class="collection-product-grid">
+      <div class="product-grid clearfix">
+        {% assign bannerLoopCounter = 1 %}
+        {% for product in collection.products %}
+          {% if collection.tags == collection.all_tags %}
+          {%comment%}only do this for unfiltered collections...{%endcomment%}
+          {% if thisCollectionsBanners.size > 0 %}
+            {% assign outerLoopIndex = forloop.index %}
+            {% for position in thisCollectionsBannerPositions %}
+              {% assign positionAsANumber = position | plus: 0 %}
+              {% if positionAsANumber == bannerLoopCounter%}
+                {% assign whichCMSPage = thisCollectionsBanners[forloop.index0] | strip %}
+                {% if pages[whichCMSPage].handle != '' %}
+                  <div class="item">
+                    <div class="cmsContent">
+                      {% assign thisPageContent = pages[whichCMSPage].content | replace: '<video', '<video autoplay muted loop playsinline' %}
+                      {{thisPageContent}}
+                    </div>
+                  </div>
+                {% endif%}
+                {% assign collectionBannersUsed = collectionBannersUsed | append: ',' | append: positionAsANumber %}
+                {% assign bannerLoopCounter = bannerLoopCounter | plus: 1 %}
+              {%endif%}
+            {% endfor %}
+          {% endif %}
+        {% endif %}
+
+        {% assign hasProducts = 'true' %}
+
+        {% include 'product-grid-item' with products_per_row %}
+          {% assign bannerLoopCounter = bannerLoopCounter | plus: 1 %}
+        {% else %}
+          <p id="noProducts">
+            Sorry, there are no products in this view.
+          </p>
+          {% assign hasProducts = 'false' %}
+        {% endfor %}
+
+        {% if thisCollectionsBanners.size > 0 %}
+          {% if collection.tags == collection.all_tags %}
+            {%comment%} check for any banners not used: {%endcomment%}
+            {% assign collectionBannersUsedArray = collectionBannersUsed | split: ',' %}
+            {% for thisBanner in thisCollectionsBannerPositions %}
+              {% assign thisBannerStripped = thisBanner | strip %}
+              {% unless collectionBannersUsedArray contains thisBannerStripped %}
+                {% assign whichCMSPage = thisCollectionsBanners[forloop.index0] | strip %}
+                {% if pages[whichCMSPage].handle != '' %}
+                  <div class="item">
+                    <div class="cmsContent">
+
+                      {% assign thisPageContent = pages[whichCMSPage].content | replace: '
+                      <video', '<video autoplay muted loop playsinline' %}
+                            {{thisPageContent}}
+                    </div>
+                  </div>
+                {%endif%}
+              {% endunless %}
+            {% endfor %}
+          {%endif%}
+        {%endif%}
+
       </div>
     </div>
-    {% endcomment %}
-    {% include 'filter-by-tags' %}
-  </div>
 
-
-  {% comment %}
-  Listing all tags within the current collection.
-  Shopify uses product tags to manage subcategories inside collections.
-  See 'How do I create subcategories of products?' at
-  http://bit.ly/1j1Dti4 for details.
-  {% endcomment %}
-
-  {% comment %}
-  {% if collection.all_tags.size > 0 %}
-  <ul class="subcategories clearfix clear">
-    <li class="{% unless current_tags %} active{% endunless %}">
-      {{ 'All' | link_to_remove_tag: current_tags.first }}
-    </li>
-    {% for tag in collection.all_tags %}
-    {% if current_tags contains tag %}
-    <li class="active">
-      {{ tag | link_to_remove_tag: tag }}
-    </li>
-    {% else %}
-    <li>
-      {{ tag | link_to_tag: tag }}
-    </li>
+    {% if paginate.pages > 1 %}
+      <div class="collection-pagination">
+        <div class="toolbar-container">
+          {{ paginate | default_pagination }}
+        </div>
+      </div>
     {% endif %}
-    {% endfor %}
-  </ul>
-  {% endif %}
-  {% endcomment %}
-  <div class="collection-product-grid">
-    <div class="product-grid clearfix">
-
-
-      {% assign bannerLoopCounter = 1 %}
-      {% for product in collection.products %}
-
-
-{% if thisCollectionsBanners.size > 0 %}
-  {% assign outerLoopIndex = forloop.index %}
-  {% for position in thisCollectionsBannerPositions %}
-    {% assign positionAsANumber = position | plus: 0 %}
-    {% if positionAsANumber == bannerLoopCounter%}
-      {% assign whichCMSPage = thisCollectionsBanners[forloop.index0] | strip %}
-      {% if pages[whichCMSPage].handle != '' %}
-        <div class="item">
-        <div class="cmsContent">
-
-
-
-
-
-
-{% assign thisPageContent = pages[whichCMSPage].content | replace: '<video', '<video autoplay muted loop playsinline' %}
-
-          {{thisPageContent}}
-
-
-
-
-
-        </div>
-        </div>
-      {% endif%}
-      {% assign collectionBannersUsed = collectionBannersUsed | append: ',' | append: positionAsANumber %}
-      {% assign bannerLoopCounter = bannerLoopCounter | plus: 1 %}
-    {%endif%}
-  {% endfor %}
-{% endif %}
-
-
-      {% include 'product-grid-item' with products_per_row %}
-      {% assign bannerLoopCounter = bannerLoopCounter | plus: 1 %}
-      {% else %}
-      <p id="noProducts">
-        There are no products in this view.
-      </p>
-
-
-      {% endfor %}
-
-
-
-{%comment%} check for any banners not used: {%endcomment%}
-{% assign collectionBannersUsedArray = collectionBannersUsed | split: ',' %}
-{% for thisBanner in thisCollectionsBannerPositions %}
-
-
-{% assign thisBannerStripped = thisBanner | strip %}
-
-{% unless collectionBannersUsedArray contains thisBannerStripped %}
-{% assign whichCMSPage = thisCollectionsBanners[forloop.index0] | strip %}
-{% if pages[whichCMSPage].handle != '' %}
-<div class="item">
-<div class="cmsContent">
-
-{% assign thisPageContent = pages[whichCMSPage].content | replace: '<video', '<video autoplay muted loop playsinline' %}
-
-          {{thisPageContent}}
-</div>
-</div>
-{%endif%}
-{% endunless %}
-{% endfor %}
-
-
-    </div>
-  </div>
-
-  {% if paginate.pages > 1 %}
-  <div class="collection-pagination">
-
-    <div class="toolbar-container">
-      {{ paginate | default_pagination }}
-    </div>
 
   </div>
-  {% endif %}
 
-  {% endpaginate %}
+{% endpaginate %}
 
-
-
-    {% if collection.description.size > 0 %}
-    <div class="collection-description">
+  {% if descriptionParagraphs.size > 1 %}
+    <div class="collection-description collection-description-top" id="read-more">
+      <div class="wrapper" id="collection-description-bottom">
         <div class="content">
-        <h2>{{ collection.title }}</h2>
-            <div class="descriptionWrapper">
-            {% assign descriptionParagraphs = collection.description | split: '</p>' %}
-
-            {% if descriptionParagraphs.size > 1 %}
-
-              {{descriptionParagraphs[0]}}</p>
-              <a href="#" class="read active readMore">Read more</a>
-              <div class="more">
-                {% for para in descriptionParagraphs %}
-                    {% if forloop.first != true %}
-                        {{ para }}</p>
-                    {% endif %}
-                {% endfor %}
-                <a href="#" class="read less">Read less</a>
-              </div>
-             {% else %}
-              {{ collection.description }}
-             {% endif %}
+          <div class="descriptionWrapper">
+            {% for paragraph in descriptionParagraphs offset:1 %}
+              {{ paragraph }}</p><br>
+            {% endfor %}
           </div>
-          </div>
+        </div>
+      </div>
     </div>
-    {% endif %}
-</div>
+  {% endif %}
 
 {% comment %}
   JavaScript for collection sorting.
@@ -256,9 +308,6 @@ Example: the h2 element should have the same size and color in:
       location.search = jQuery.param(Shopify.queryParams).replace(/\+/g, '%20');
     });
 </script>
-
-
-
 
 <script>
   /* Product Tag Filters - Good for any number of filters on any type of collection page. */
@@ -290,6 +339,209 @@ Example: the h2 element should have the same size and color in:
     }
     location.search = jQuery.param(Shopify.queryParams);
   });
+
 </script>
 
 {% include 'quick-view-ajaxify-cart' %}
+
+{%endif%}
+
+{% comment %} Collection top banner script {% endcomment %}
+<script>
+  const moreBtn = document.querySelector('.collection-top-banner  span.more-btn');
+  const lessBtn = document.querySelector('.collection-top-banner  span.less-btn');
+  const closeBtn = document.querySelector('.collection-top-banner  .readmore-close');
+  const modalX = document.querySelector('.collection-top-banner  .collection-info-modal-close');
+  const collModal = document.querySelector('.collection-top-banner .collection-info-modal');
+  const collOverlay = document.querySelector('.collection-top-banner .collection-overlay');
+
+      moreBtn.addEventListener('click', function () {
+        collModal.classList.remove('modal-hide');
+        collModal.classList.add('modal-transition');
+        collOverlay.classList.remove('modal-hide');
+        collOverlay.classList.add('modal-transition');
+      });
+      lessBtn.addEventListener('click', function () {
+        collModal.classList.add('modal-hide');
+        collModal.classList.remove('modal-transition');
+        collOverlay.classList.add('modal-hide');
+        collOverlay.classList.remove('modal-transition');
+      });
+  
+      modalX.addEventListener('click', function () {
+        lessBtn.click();
+      });
+      collOverlay.addEventListener('click', function () {
+        lessBtn.click();
+      });
+
+</script>
+
+{% comment %} Collection top banner style {% endcomment %}
+<style>
+
+.collection-top-banner {
+  display: flex;
+  background: #F8F8F8;
+  margin-right: 17.75rem;
+  margin-left: 2rem;
+  margin-bottom: 32px;
+}
+  .collection-top-banner .collection-info-wrapper {
+  width: 50%;
+}
+  .collection-top-banner .collection-info-wrapper .collection-info {
+  background: white;
+  margin: 32px 32px 32px 32px;
+  padding: 45px 32px;
+  max-width: 520px;
+  box-sizing: border-box;
+  position: relative;
+}
+  .collection-top-banner .collection-info-wrapper .collection-info .collection-tittle h1 {
+  font-size: 26px;
+  line-height: 33px;
+}
+  .collection-top-banner .collection-info-wrapper .collection-info .collection-info-modal {
+  position: absolute;
+  background: white;
+  left: 0;
+  top: 0;
+  z-index: 100001;
+  padding: 45px 32px;
+  opacity: 0;
+  transition: 0.5s all;
+  width: 100%;
+  box-sizing: border-box;
+}
+  .collection-top-banner .collection-info-wrapper .collection-info .collection-info-modal .collection-description {
+  overflow: unset;
+  max-height: unset;
+}
+  .collection-top-banner .collection-info-wrapper .collection-info .collection-info-modal .collection-info-modal-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 30px;
+  margin-right: 30px;
+  margin-top: 30px;
+  font-weight: 300;
+  line-height: 13px;
+  cursor: pointer;
+}
+  .collection-top-banner .collection-info-wrapper .collection-info .collection-overlay {
+  background: #0000002b;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 99999;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: 0.5s all;
+}
+  .collection-top-banner .collection-info-wrapper .collection-description {
+  padding: 0;
+  text-align: left;
+  color: #777777;
+  font-size: 14px;
+  font-weight: 400;
+  padding-top: 20px;
+  line-height: 18px;
+  transition: max-height 0.4s ease-out;
+}
+  .collection-top-banner .collection-info-wrapper .collection-description p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #777777;
+}
+  .collection-top-banner .collection-info-wrapper .collection-description h2 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #111111;
+}
+  .collection-top-banner .collection-info-wrapper .collection-description .descriptionWrapper {
+  padding: 0;
+  line-height: 18px;
+  font-size: 14px;
+}
+  .collection-top-banner .collection-info-wrapper .modal-hide {
+  visibility: hidden;
+  opacity: 0;
+}
+  .collection-top-banner .collection-info-wrapper .modal-transition {
+  visibility: visible;
+  opacity: 1 !important;
+}
+  .collection-top-banner .collection-info-wrapper .btn-hide {
+  display: none !important;
+}
+  .collection-top-banner .collection-info-wrapper .more-btn,   .collection-top-banner .collection-info-wrapper .less-btn {
+  cursor: pointer;
+  font-size: 14px;
+  color: #111111;
+  line-height: 18px;
+}
+  .collection-top-banner .collection-info-wrapper .read-more-less {
+  margin-top: 10px;
+}
+  .collection-top-banner .collection-info-wrapper .less-btn {
+  display: block;
+  margin-top: 20px;
+}
+  .collection-top-banner .collection-image-wrapper {
+  width: 50%;
+  transition: 1s all;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: top center !important;
+}
+@media screen and (min-width: 90em) {
+    .collection-top-banner {
+    margin-right: 17.75rem !important;
+  }
+}
+@media screen and (min-width: 64em) {
+    .collection-top-banner {
+    margin-right: 3.5em;
+  }
+}
+@media only screen and (max-width: 63.99em) and (min-width: 48em) {
+    .collection-top-banner {
+    margin-right: 1.875em;
+  }
+}
+@media only screen and (max-width: 767px) {
+    .collection-top-banner {
+    padding: 45px 1.25em 35px 1.25em;
+    margin: 0;
+    background: unset;
+  }
+    .collection-top-banner .collection-image-wrapper {
+    display: none;
+  }
+    .collection-top-banner .collection-info-wrapper {
+    width: 100%;
+  }
+    .collection-top-banner .collection-info-wrapper .collection-info {
+    margin: 0;
+    padding: 0;
+    max-width: unset;
+  }
+    .collection-top-banner .collection-info-wrapper .collection-info .collection-tittle {
+    position: relative;
+  }
+    .collection-top-banner .collection-info-wrapper .collection-info .readmore-close {
+    position: absolute;
+    right: 0;
+    font-size: 16px;
+    top: 9px;
+    cursor: pointer;
+  }
+}
+
+
+</style>
+
