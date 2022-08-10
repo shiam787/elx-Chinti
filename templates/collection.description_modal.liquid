@@ -92,7 +92,7 @@ Example: the h2 element should have the same size and color in:
       {% endif %}
       </div>
     </div>
-    <div class="collection-image-wrapper" style="background:url({{ collectionImage }})"></div>
+    <div class="collection-image-wrapper" style="background:url({{ collectionImage | image_url:'master' }})"></div>
   </div>
 
 {% else %}
