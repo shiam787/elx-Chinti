@@ -4,6 +4,13 @@ Important notes about pagination:
 - Never paginate by more than 50.
 {% endcomment %}
 
+<style>
+.collection-top-banner .collection-info-wrapper .modal-hide {
+  visibility: hidden;
+  opacity: 0;
+}
+</style>
+
 {% assign products_per_page = settings.products_per_row | times: settings.number_of_rows %}
 {% assign numbers = 'zero, one, two, three, four, five, six' | split: ',' %}
 {% assign products_per_row = settings.products_per_row | times: 1 %}
