@@ -43,7 +43,7 @@ Example: the h2 element should have the same size and color in:
 
 {% comment %} {% assign collectionImage = 'bg-collection.jpg' | asset_url %} {% endcomment %}
 {% assign collectionImage = '' %}
-{% if collection.image %}{% assign collectionImage = collection.image | img_url %}{% endif %}
+{% if collection.image %}{% assign collectionImage = collection.image | img_url :'master' %}{% endif %}
 
 <div class="collection-filters">
     <a class="title" href="#">Filters</a>
@@ -92,8 +92,7 @@ Example: the h2 element should have the same size and color in:
       {% endif %}
       </div>
     </div>
-  {{ collectionImage | image_url:'original' }}
-    <div class="collection-image-wrapper" style="background:url({{ collectionImage | image_url:'master' }})"></div>
+    <div class="collection-image-wrapper" style="background:url({{ collectionImage }})"></div>
   </div>
 
 {% else %}
