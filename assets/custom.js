@@ -15,8 +15,8 @@ if($('.notification-carousel')){
  
 
   });
-//   $(window).on('focus', function () {
-//     $('.owl-next').trigger('click');
-// });
+  $(window).on('focus', function () {
+    $('.owl-next').trigger('click');
+});
 }
 
