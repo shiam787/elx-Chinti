@@ -1,5 +1,5 @@
 if($('.notification-carousel')){
-  let slideSpeed=document.querySelector('#notificationRibbon').dataset.time;
+  let slideSpeed=Number(document.querySelector('#notificationRibbon').dataset.time);
   $('.notification-carousel').owlCarousel({
       animateIn: 'flipInX',
       items:1,
