@@ -4569,7 +4569,8 @@
           "a4f674ff-d65e-43e8-b6c6-ee014f9dd99c"
         ],
         "settings": {
-          "show_notification": true
+          "show_notification": true,
+          "notification_time": 500
         }
       },
       "1659953583a7496025": {
