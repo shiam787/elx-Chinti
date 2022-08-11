@@ -4570,7 +4570,7 @@
         ],
         "settings": {
           "show_notification": true,
-          "notification_time": 500
+          "notification_time": 0
         }
       },
       "1659953583a7496025": {
