@@ -1,7 +1,7 @@
 if($('.notification-carousel')){
   let slideSpeed=Number(document.querySelector('#notificationRibbon').dataset.time);
   $('.notification-carousel').owlCarousel({
-      animateIn: 'flipInX',
+      //animateIn: 'flipInX',
       items:1,
       margin:0,
       stagePadding:0,
@@ -9,7 +9,7 @@ if($('.notification-carousel')){
       loop:true,
       dots:false,
       autoplay:true,
-      // autoplayTimeout:1000,
+      autoplayTimeout:1000,
       mouseDrag:false
 
  
