@@ -10,6 +10,7 @@ if($('.notification-carousel')){
       dots:false,
       autoplay:true,
       // autoplayTimeout:3000,
+      autoplaySpeed: 10
       mouseDrag:false
 
  
