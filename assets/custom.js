@@ -16,9 +16,9 @@ setTimeout(function(){
         autoRefresh: false
       });
   
-  $(window).on('focus', function () {
-        $('.notification-carousel .owl-next').trigger('click');
-    });
+      $(window).on('focus', function () {
+            $('.notification-carousel .owl-next').trigger('click');
+      });
     
   }
 
