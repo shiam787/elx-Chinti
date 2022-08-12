@@ -23,7 +23,7 @@ if($('.notification-carousel')){
     // Listen to owl events:
     owl.on('changed.owl.carousel', function(event) {
       console.log("changed ow carousel: ", event);
-        
+        owl.trigger('play.owl.autoplay', [1000, 200]);
     })
   // }, 2000)
 
