@@ -17,9 +17,12 @@ setTimeout(function(){
       });
   }
 
+   $('.owl-next').trigger('next.owl.carousel', [200]);
+
   var owl = $('.notification-carousel').owlCarousel();
 
 owl.on('changed.owl.carousel', function(event) {
+  console.log("event: ", event);
     $('.notification-carousel').trigger('stop.owl.autoplay');
    $('.notification-carousel').trigger('play.owl.autoplay');
 })
