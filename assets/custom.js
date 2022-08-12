@@ -11,21 +11,21 @@ setTimeout(function(){
           dots:false,
           autoplay:true,
           autoplaySpeed:2500,
-          autoplayTimeout:1000,
+          autoplayTimeout:3000,
           mouseDrag:false,
         autoRefresh: false
       });
   }
 
-   $('.owl-next').trigger('next.owl.carousel', [200]);
+//    $('.owl-next').trigger('next.owl.carousel', [200]);
 
-  var owl = $('.notification-carousel');
+//   var owl = $('.notification-carousel');
 
-owl.on('changed.owl.carousel', function(event) {
-  console.log("event: ", event);
-    $('.notification-carousel').trigger('stop.owl.autoplay');
-   $('.notification-carousel').trigger('play.owl.autoplay');
-})
+// owl.on('changed.owl.carousel', function(event) {
+//   console.log("event: ", event);
+//     $('.notification-carousel').trigger('stop.owl.autoplay');
+//    $('.notification-carousel').trigger('play.owl.autoplay');
+// })
 
 }, 2000)
 
