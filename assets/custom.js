@@ -1,4 +1,5 @@
-if($('.notification-carousel')){
+setTimeout(function(){
+  if($('.notification-carousel')){
   let slideSpeed=Number(document.querySelector('#notificationRibbon').dataset.time);
   $('.notification-carousel').owlCarousel({
       animateIn: 'flipInX',
@@ -13,6 +14,8 @@ if($('.notification-carousel')){
       autoplayTimeout:1000,
       mouseDrag:false
   });
+
+}, 2000)
 
 //   $(window).on('focus', function () {
 //     $('.owl-next').trigger('click');
