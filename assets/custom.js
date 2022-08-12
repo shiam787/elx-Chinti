@@ -19,6 +19,7 @@ setTimeout(function(){
 
 }, 2000)
 
+$('.owl-next').trigger('next.owl.carousel', [200]);
 // $('.owl-next').trigger('click');
 //   $(window).on('focus', function () {
 //     
