@@ -4554,11 +4554,27 @@
               "notification_text": "FREE SHIPPING ON ALL ORDERS OVER £250",
               "notification_link": "shopify:\/\/collections\/new-season"
             }
+          },
+          "78854f6b-d8c3-42b5-83a2-c3e3427dd516": {
+            "type": "notification-item",
+            "settings": {
+              "notification_text": "test",
+              "notification_link": ""
+            }
+          },
+          "5dd50a1b-5390-4f1d-9c3e-da5753597d60": {
+            "type": "notification-item",
+            "settings": {
+              "notification_text": "test1",
+              "notification_link": ""
+            }
           }
         },
         "block_order": [
           "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d",
-          "e397008d-333d-4d5c-8f3f-29569c5eca1d"
+          "e397008d-333d-4d5c-8f3f-29569c5eca1d",
+          "78854f6b-d8c3-42b5-83a2-c3e3427dd516",
+          "5dd50a1b-5390-4f1d-9c3e-da5753597d60"
         ],
         "settings": {
           "show_notification": true,
