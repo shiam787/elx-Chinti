@@ -5,11 +5,12 @@ if($('.notification-carousel')){
       items:1,
       margin:0,
       stagePadding:0,
-      smartSpeed:2500,
+      // smartSpeed:2500,
       loop:true,
       dots:false,
       autoplay:true,
-      autoplayTimeout:slideSpeed,
+      autoplaySpeed:2500,
+      // autoplayTimeout:slideSpeed,
       mouseDrag:false
 
  
