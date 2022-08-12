@@ -9,8 +9,9 @@ if($('.notification-carousel')){
       loop:true,
       dots:false,
       autoplay:true,
-      autoplaySpeed:2500,
-      autoplayTimeout:1000,
+      fluidSpeed:1000,
+      // autoplaySpeed:2500,
+      // autoplayTimeout:1000,
       mouseDrag:false
 
  
