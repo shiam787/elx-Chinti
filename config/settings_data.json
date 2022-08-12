@@ -4541,36 +4541,28 @@
       "notification-ribbon-carousel": {
         "type": "notification-ribbon-carousel",
         "blocks": {
+          "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d": {
+            "type": "notification-item",
+            "settings": {
+              "notification_text": "10% OFF YOUR FIRST ORDER",
+              "notification_link": "shopify:\/\/pages\/newsletter-sign-up"
+            }
+          },
           "e397008d-333d-4d5c-8f3f-29569c5eca1d": {
             "type": "notification-item",
             "settings": {
               "notification_text": "FREE SHIPPING ON ALL ORDERS OVER £250",
-              "notification_link": "shopify:\/\/collections\/100-cashmere"
-            }
-          },
-          "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d": {
-            "type": "notification-item",
-            "settings": {
-              "notification_text": "Sign up to our newsletter to receive 20% off your first full price order.",
-              "notification_link": "shopify:\/\/pages\/account"
-            }
-          },
-          "a4f674ff-d65e-43e8-b6c6-ee014f9dd99c": {
-            "type": "notification-item",
-            "settings": {
-              "notification_text": "Test annoucment",
-              "notification_link": "#"
+              "notification_link": "shopify:\/\/collections\/new-season"
             }
           }
         },
         "block_order": [
-          "e397008d-333d-4d5c-8f3f-29569c5eca1d",
           "97dc28a9-a444-4342-a9fc-5ad82dd4fe4d",
-          "a4f674ff-d65e-43e8-b6c6-ee014f9dd99c"
+          "e397008d-333d-4d5c-8f3f-29569c5eca1d"
         ],
         "settings": {
           "show_notification": true,
-          "notification_time": 1500
+          "notification_time": 2500
         }
       },
       "1659953583a7496025": {
