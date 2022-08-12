@@ -11,7 +11,7 @@ setTimeout(function(){
           dots:false,
           autoplay:true,
           autoplaySpeed:2500,
-          autoplayTimeout:10000,
+          autoplayTimeout:slideSpeed,
           mouseDrag:false,
         autoRefresh: false
       });
