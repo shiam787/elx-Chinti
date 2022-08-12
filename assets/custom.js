@@ -1,4 +1,4 @@
-setTimeout(function(){
+// setTimeout(function(){
   if($('.notification-carousel')){
   let slideSpeed=Number(document.querySelector('#notificationRibbon').dataset.time);
       $('.notification-carousel').owlCarousel({
@@ -17,5 +17,5 @@ setTimeout(function(){
       });
   }
 
-}, 2000)
+// }, 2000)
 
