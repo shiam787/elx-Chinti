@@ -6,7 +6,7 @@ if($('.notification-carousel')){
       // margin:0,
       // stagePadding:0,
       // smartSpeed:1000,
-      // loop:true,
+      loop:true,
       // dots:false,
       autoplay:true,
       // autoplaySpeed:2500,
