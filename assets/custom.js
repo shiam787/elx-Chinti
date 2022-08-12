@@ -19,7 +19,7 @@ setTimeout(function(){
 
    $('.owl-next').trigger('next.owl.carousel', [200]);
 
-  var owl = $('.notification-carousel').owlCarousel();
+  var owl = $('.notification-carousel');
 
 owl.on('changed.owl.carousel', function(event) {
   console.log("event: ", event);
