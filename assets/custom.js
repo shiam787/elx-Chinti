@@ -6,12 +6,12 @@ setTimeout(function(){
           items:1,
           margin:0,
           stagePadding:0,
-          // smartSpeed:450,
+          smartSpeed:450,
           loop:true,
           dots:false,
           autoplay:true,
           autoplaySpeed:2500,
-          autoplayTimeout:1001,
+          autoplayTimeout:2000,
           mouseDrag:false,
         autoRefresh: false
       });
