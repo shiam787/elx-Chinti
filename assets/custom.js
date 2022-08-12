@@ -18,8 +18,9 @@ setTimeout(function(){
 
 }, 2000)
 
+$('.owl-next').trigger('click');
 //   $(window).on('focus', function () {
-//     $('.owl-next').trigger('click');
+//     
 // });
 
 
