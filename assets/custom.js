@@ -15,6 +15,11 @@ setTimeout(function(){
           mouseDrag:false,
         autoRefresh: false
       });
+  
+  $(window).on('focus', function () {
+        $('.notification-carousel .owl-next').trigger('click');
+    });
+    
   }
 
 }, 2000)
