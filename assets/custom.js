@@ -17,7 +17,7 @@ if($('.notification-carousel')){
 
   });
 
-  setTimeout(function(){
+  // setTimeout(function(){
      var owl = $('.notification-carousel');
     owl.owlCarousel();
     // Listen to owl events:
@@ -27,7 +27,7 @@ if($('.notification-carousel')){
         $('.notification-carousel').data()['owl.carousel'].options.autoplaySpeed = 100;
         $('.notification-carousel').trigger("refresh.owl.carousel");
     })
-  }, 2000)
+  // }, 2000)
 
  
 //   $(window).on('focus', function () {
