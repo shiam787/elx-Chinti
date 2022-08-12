@@ -14,6 +14,7 @@ setTimeout(function(){
       autoplayTimeout:1000,
       mouseDrag:false
   });
+  }
 
 }, 2000)
 
