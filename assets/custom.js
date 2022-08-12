@@ -17,9 +17,16 @@ setTimeout(function(){
       });
   }
 
+  var owl = $('.notification-carousel').owlCarousel();
+
+owl.on('changed.owl.carousel', function(event) {
+    $('.notification-carousel').trigger('stop.owl.autoplay');
+   $('.notification-carousel').trigger('play.owl.autoplay');
+})
+
 }, 2000)
 
-$('.owl-next').trigger('next.owl.carousel', [200]);
+// $('.owl-next').trigger('next.owl.carousel', [200]);
 // $('.owl-next').trigger('click');
 //   $(window).on('focus', function () {
 //     
