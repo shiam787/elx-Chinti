@@ -66,4 +66,20 @@
     display: flex;
     align-items: center;
   }
+  #shopify-section-notification-ribbon-carousel item{
+    display:none;
+  }
+  #shopify-section-notification-ribbon-carousel item:nth-child(1){
+    display:block;
+  }
 </style>
+
+<script>
+  document.addEventListener('readystatechange', (event) => {
+    
+   if (event.target.readyState === 'complete') {
+      console.log('complete')
+    }
+    
+});
+</script>
