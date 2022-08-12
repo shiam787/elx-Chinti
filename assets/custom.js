@@ -12,13 +12,14 @@ setTimeout(function(){
           autoplay:true,
           autoplaySpeed:2500,
           autoplayTimeout:1000,
-          mouseDrag:false
+          mouseDrag:false,
+        autoRefresh: false
       });
   }
 
 }, 2000)
 
-$('.owl-next').trigger('click');
+// $('.owl-next').trigger('click');
 //   $(window).on('focus', function () {
 //     
 // });
