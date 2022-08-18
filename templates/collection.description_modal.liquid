@@ -211,7 +211,7 @@ Example: the h2 element should have the same size and color in:
 
 {% comment %} {% assign collectionImage = 'bg-collection.jpg' | asset_url %} {% endcomment %}
 {% assign collectionImage = '' %}
-{% if collection.image %}{% assign collectionImage = collection.image | img_url : 'master' %}{% endif %}
+{% if collection.image %}{% assign collectionImage = collection.image | img_url : '1024x1024' %}{% endif %}
 
 <div class="collection-filters">
     <a class="title" href="#">Filters</a>
