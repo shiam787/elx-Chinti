@@ -162,7 +162,7 @@
       <meta itemprop="name" content="{{ shop.name }}" />
       {% endif %}
 
-      {% include 'open-graph-tags' %} {% include 'twitter-card' %} {%comment%}{{ content_for_header }}{%endcomment%}
+      {% include 'open-graph-tags' %} {% include 'twitter-card' %} {% include 'schema-org.liquid' %} {%comment%}{{ content_for_header }}{%endcomment%}
       
        {% capture h_content %}
   		{{ content_for_header }}
