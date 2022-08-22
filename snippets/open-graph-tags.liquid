@@ -37,3 +37,37 @@
 {% endif %}
 <meta property="og:url" content="{{ canonical_url }}" />
 <meta property="og:site_name" content="{{ shop.name }}" />
+
+
+{% if template contains 'product' %}
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Product",
+  "productID":"{{ product.id  }}",
+  "name":"{{ product.title | strip_html | escape }}",
+  "description":"{{ product.description | strip_html | escape }}",
+  "url":"{{ product.url }}",
+  {% for image in product.images %}
+   "image":"{{ image | img_url: 'grande' }}",
+  {% endfor %}
+  "brand":"{{ product.vendor }}",
+  "offers": [
+    {
+      "@type": "Offer",
+      "price": "{{ product.price | money_without_currency }}",
+      "priceCurrency": "{{ shop.currency  }}",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock"
+    }
+  ],
+  "additionalProperty": [{
+    "@type": "PropertyValue",
+    "propertyID": "item_group_id",
+    "value": "{{ product.type }}"
+  }]
+}
+</script>
+
+{% endif %} 
