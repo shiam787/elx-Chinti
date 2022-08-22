@@ -44,6 +44,7 @@
 
 {%endfor%}
 	<div class="product row" itemscope itemtype="http://schema.org/Product">
+          <link itemprop="availability" href="http://schema.org/InStock">
 
 		<meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
 		<meta itemprop="image" content="{{ product | img_url: '1280x1280' }}" />
