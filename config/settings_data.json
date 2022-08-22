@@ -4582,6 +4582,178 @@
         "settings": {
           "title": ""
         }
+      },
+      "header-style-01": {
+        "type": "header-style-01",
+        "blocks": {
+          "6c74fccf-d75d-4116-a644-f875875c8a97": {
+            "type": "nav_item",
+            "settings": {
+              "title": "New",
+              "title_url": "",
+              "title_colour": "",
+              "inner_link_colour": "#000",
+              "sale_colour": "#FF0000",
+              "mobile_title_colour": false,
+              "subheadings_colour": "",
+              "linklist": "",
+              "background_colour": "",
+              "featured_content_mobile": false,
+              "featured_content_heading": "",
+              "featured_content_1": "",
+              "featured_content_title_1": "",
+              "featured_content_mobile_1": false,
+              "featured_content_2": "",
+              "featured_content_title_2": "",
+              "featured_content_mobile_2": false,
+              "featured_content_3": "",
+              "featured_content_title_3": "",
+              "featured_content_mobile_3": false
+            }
+          },
+          "72687d6c-7c6d-41ac-bccc-2935be97aa37": {
+            "type": "nav_item",
+            "settings": {
+              "title": "Shop ",
+              "title_url": "",
+              "title_colour": "",
+              "inner_link_colour": "#000",
+              "sale_colour": "#FF0000",
+              "mobile_title_colour": false,
+              "subheadings_colour": "",
+              "linklist": "",
+              "background_colour": "",
+              "featured_content_mobile": false,
+              "featured_content_heading": "",
+              "featured_content_1": "",
+              "featured_content_title_1": "",
+              "featured_content_mobile_1": false,
+              "featured_content_2": "",
+              "featured_content_title_2": "",
+              "featured_content_mobile_2": false,
+              "featured_content_3": "",
+              "featured_content_title_3": "",
+              "featured_content_mobile_3": false
+            }
+          },
+          "79fb6687-d4c2-4e07-80dc-48a5ff76d7e3": {
+            "type": "nav_item",
+            "settings": {
+              "title": "Cashmere",
+              "title_url": "",
+              "title_colour": "",
+              "inner_link_colour": "#000",
+              "sale_colour": "#FF0000",
+              "mobile_title_colour": false,
+              "subheadings_colour": "",
+              "linklist": "",
+              "background_colour": "",
+              "featured_content_mobile": false,
+              "featured_content_heading": "",
+              "featured_content_1": "",
+              "featured_content_title_1": "",
+              "featured_content_mobile_1": false,
+              "featured_content_2": "",
+              "featured_content_title_2": "",
+              "featured_content_mobile_2": false,
+              "featured_content_3": "",
+              "featured_content_title_3": "",
+              "featured_content_mobile_3": false
+            }
+          },
+          "79f9b02c-cdda-468c-88d8-3ca1a9d3a3a2": {
+            "type": "nav_item",
+            "settings": {
+              "title": "Collabs",
+              "title_url": "",
+              "title_colour": "",
+              "inner_link_colour": "#000",
+              "sale_colour": "#FF0000",
+              "mobile_title_colour": false,
+              "subheadings_colour": "",
+              "linklist": "",
+              "background_colour": "",
+              "featured_content_mobile": false,
+              "featured_content_heading": "",
+              "featured_content_1": "",
+              "featured_content_title_1": "",
+              "featured_content_mobile_1": false,
+              "featured_content_2": "",
+              "featured_content_title_2": "",
+              "featured_content_mobile_2": false,
+              "featured_content_3": "",
+              "featured_content_title_3": "",
+              "featured_content_mobile_3": false
+            }
+          },
+          "64a606c1-8962-4797-b9f5-8ade2f659d08": {
+            "type": "nav_item",
+            "settings": {
+              "title": "SALE",
+              "title_url": "",
+              "title_colour": "",
+              "inner_link_colour": "#000",
+              "sale_colour": "#FF0000",
+              "mobile_title_colour": false,
+              "subheadings_colour": "",
+              "linklist": "",
+              "background_colour": "",
+              "featured_content_mobile": false,
+              "featured_content_heading": "",
+              "featured_content_1": "",
+              "featured_content_title_1": "",
+              "featured_content_mobile_1": false,
+              "featured_content_2": "",
+              "featured_content_title_2": "",
+              "featured_content_mobile_2": false,
+              "featured_content_3": "",
+              "featured_content_title_3": "",
+              "featured_content_mobile_3": false
+            }
+          },
+          "d4e7c454-3233-42df-ad53-ff0b2f0c5e9c": {
+            "type": "nav_item",
+            "settings": {
+              "title": "About",
+              "title_url": "",
+              "title_colour": "",
+              "inner_link_colour": "#000",
+              "sale_colour": "#FF0000",
+              "mobile_title_colour": false,
+              "subheadings_colour": "",
+              "linklist": "",
+              "background_colour": "",
+              "featured_content_mobile": false,
+              "featured_content_heading": "",
+              "featured_content_1": "",
+              "featured_content_title_1": "",
+              "featured_content_mobile_1": false,
+              "featured_content_2": "",
+              "featured_content_title_2": "",
+              "featured_content_mobile_2": false,
+              "featured_content_3": "",
+              "featured_content_title_3": "",
+              "featured_content_mobile_3": false
+            }
+          }
+        },
+        "block_order": [
+          "6c74fccf-d75d-4116-a644-f875875c8a97",
+          "72687d6c-7c6d-41ac-bccc-2935be97aa37",
+          "79fb6687-d4c2-4e07-80dc-48a5ff76d7e3",
+          "79f9b02c-cdda-468c-88d8-3ca1a9d3a3a2",
+          "64a606c1-8962-4797-b9f5-8ade2f659d08",
+          "d4e7c454-3233-42df-ad53-ff0b2f0c5e9c"
+        ],
+        "settings": {
+          "emphasised_capture_words": "all,everything",
+          "enable_mobile_background_colour": false,
+          "mobile_background_colour": "#ffffff",
+          "enable_mobile_item_colours": false,
+          "mobile_item_colour": "#ffffff",
+          "enable_mobile_action_colours": false,
+          "mobile_action_colour": "#ffffff"
+        }
       }
     },
     "content_for_index": [
