@@ -4786,7 +4786,7 @@
               "title_colour": "#ff0000",
               "inner_link_colour": "#000000",
               "sale_colour": "#ff0000",
-              "mobile_title_colour": false,
+              "mobile_title_colour": true,
               "subheadings_colour": "rgba(0,0,0,0)",
               "linklist": "new-meganav-sale",
               "background_colour": "#fcfaf7",
