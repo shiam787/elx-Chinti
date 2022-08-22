@@ -187,9 +187,9 @@
 							<meta itemprop="price" content="{{ product.price | money_without_currency }}">
 
 							{% if product.available %}
-							<meta itemprop="availability" content="In Stock" />
+							<link itemprop="availability" href="http://schema.org/InStock" />
 							{% else %}
-							<meta itemprop="availability" content="out of stock" />
+							<link itemprop="availability" href="http://schema.org/OutOfStock" />
 							{% endif %}
 							<p>
 								{% assign variant = product.selected_or_first_available_variant %}
