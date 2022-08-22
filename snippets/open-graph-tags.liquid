@@ -59,7 +59,13 @@
       "price": "{{ product.price | money_without_currency }}",
       "priceCurrency": "{{ shop.currency  }}",
       "itemCondition": "https://schema.org/NewCondition",
+  {% if product.available %}
       "availability": "https://schema.org/InStock"
+  {% else %}
+      "availability": "http://schema.org/OutOfStock"
+  {% endif %}
+
+
     }
   ],
   "additionalProperty": [{
