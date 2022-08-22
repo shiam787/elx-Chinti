@@ -1,0 +1,15 @@
+{% if template contains 'product' %}
+  <meta itemprop="name" content="{{ product.title | strip_html | escape }}" />
+  <meta itemprop="description" content="{{ product.description | strip_html | escape }}" />
+  <meta itemprop="brand" content="{{ product.vendor }}">
+  <meta itemprop="availability" content="{% if product.available %} in stock {% else %} out of stock {% endif %}">
+  <meta itemprop="condition" content="new">
+  <meta itemprop="productID" content="{{ product.id }}">
+  <meta itemprop="url" content="{{ product.url }}">
+  {% for image in product.images %}
+  <meta itemprop="image" content="http:{{ image | img_url: 'grande' }}" />
+  {% endfor %}
+  <meta itemprop="price" content="{{ product.price | money_without_currency }}" />
+  <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+
+  {% endif %}
