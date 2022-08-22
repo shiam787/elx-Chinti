@@ -1,6 +1,7 @@
 {% if template contains 'product' %}
   <meta property="og:type" content="product" />
   <meta property="og:title" content="{{ product.title | strip_html | escape }}" />
+  <meta property="og:description" content="{{ product.description }}">
   {% for image in product.images %}
   <meta property="og:image" content="http:{{ image | img_url: 'grande' }}" />
   <meta property="og:image:secure_url" content="https:{{ image | img_url: 'grande' }}" />
