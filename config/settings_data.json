@@ -4850,13 +4850,13 @@
           "d4e7c454-3233-42df-ad53-ff0b2f0c5e9c"
         ],
         "settings": {
-          "emphasised_capture_words": "all,everything",
-          "enable_mobile_background_colour": false,
+          "emphasised_capture_words": "shop all, view all",
+          "enable_mobile_background_colour": true,
           "mobile_background_colour": "#ffffff",
-          "enable_mobile_item_colours": false,
-          "mobile_item_colour": "#ffffff",
-          "enable_mobile_action_colours": false,
-          "mobile_action_colour": "#ffffff"
+          "enable_mobile_item_colours": true,
+          "mobile_item_colour": "#000000",
+          "enable_mobile_action_colours": true,
+          "mobile_action_colour": "#000000"
         }
       }
     },
