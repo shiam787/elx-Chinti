@@ -49,9 +49,7 @@
   "name":"{{ product.title | strip_html | escape }}",
   "description":"{{ product.description | strip_html | escape }}",
   "url":"{{ product.url }}",
-  {% for image in product.images %}
-   "image":"{{ image | img_url: 'grande' }}",
-  {% endfor %}
+   "image":"{{ product.featured_image | img_url: 'grande' }}",
   "brand":"{{ product.vendor }}",
   "offers": [
     {
