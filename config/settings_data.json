@@ -4697,7 +4697,7 @@
               "subheadings_colour": "rgba(0,0,0,0)",
               "linklist": "new-meganav-shop",
               "background_colour": "#fcfaf7",
-              "featured_content_mobile": true,
+              "featured_content_mobile": false,
               "featured_content_heading": "In the Spotlight",
               "featured_content_1": "shopify:\/\/collections\/new-season",
               "featured_content_title_1": "New In",
