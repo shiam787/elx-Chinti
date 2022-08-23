@@ -254,6 +254,9 @@
   .meganav-content {
       transition: opacity .5s ease-in-out;
   }
+  .meganav--mobile .meganav-menu__links:not([aria-hidden=false]) {
+    display: block !important;
+  }
   
   @media screen and (max-width: 979px) and (min-width: 400px) {
     .page-header__logo img, .page-header__logo svg {
