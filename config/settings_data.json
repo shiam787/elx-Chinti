@@ -4776,7 +4776,7 @@
             "type": "nav_item",
             "settings": {
               "title": "Sale",
-              "title_url": "shopify:\/\/collections\/new-season",
+              "title_url": "shopify:\/\/collections\/sale",
               "title_colour": "#ff0000",
               "inner_link_colour": "#000000",
               "sale_colour": "#ff0000",
