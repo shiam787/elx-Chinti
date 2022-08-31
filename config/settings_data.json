@@ -4654,28 +4654,34 @@
       "header-style-01": {
         "type": "header-style-01",
         "blocks": {
-          "6c74fccf-d75d-4116-a644-f875875c8a97": {
+          "64a606c1-8962-4797-b9f5-8ade2f659d08": {
             "type": "nav_item",
             "settings": {
               "title": "New",
               "title_url": "shopify:\/\/collections\/new-season",
-              "title_colour": "rgba(0,0,0,0)",
+              "title_colour": "#000000",
               "inner_link_colour": "#000000",
               "sale_colour": "#ff0000",
-              "mobile_title_colour": false,
-              "subheadings_colour": "rgba(0,0,0,0)",
+              "mobile_title_colour": true,
+              "subheadings_colour": "#ff0000",
               "linklist": "new-mega-nav-new",
               "background_colour": "#fcfaf7",
               "featured_content_mobile": false,
-              "featured_content_heading": "",
-              "featured_content_1": "",
-              "featured_content_title_1": "",
+              "featured_content_heading": "We Love These",
+              "featured_content_1": "shopify:\/\/collections\/new-season",
+              "featured_content_title_1": "AW22 Collection",
+              "featured_content_image_1": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0004_220623_EA_CHINTI_AND_PARKER_AW23_SH04_036_R1.jpg",
+              "featured_content_mobile_image_1": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0004_220623_EA_CHINTI_AND_PARKER_AW23_SH04_036_R1.jpg",
               "featured_content_mobile_1": false,
-              "featured_content_2": "",
-              "featured_content_title_2": "",
+              "featured_content_2": "shopify:\/\/collections\/cashmere-essentials",
+              "featured_content_title_2": "New Essentials",
+              "featured_content_image_2": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0013_220623_EA_CHINTI_AND_PARKER_AW23_SH17_044_R1.jpg",
+              "featured_content_mobile_image_2": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0013_220623_EA_CHINTI_AND_PARKER_AW23_SH17_044_R1.jpg",
               "featured_content_mobile_2": false,
-              "featured_content_3": "",
-              "featured_content_title_3": "",
+              "featured_content_3": "shopify:\/\/collections\/new-cashmere",
+              "featured_content_title_3": "New Cashmere",
+              "featured_content_image_3": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0008_220623_EA_CHINTI_AND_PARKER_AW23_SH11_046_R1.jpg",
+              "featured_content_mobile_image_3": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0008_220623_EA_CHINTI_AND_PARKER_AW23_SH11_046_R1.jpg",
               "featured_content_mobile_3": false
             }
           },
@@ -4766,7 +4772,7 @@
               "featured_content_mobile_3": false
             }
           },
-          "64a606c1-8962-4797-b9f5-8ade2f659d08": {
+          "6c74fccf-d75d-4116-a644-f875875c8a97": {
             "type": "nav_item",
             "settings": {
               "title": "Sale",
@@ -4775,25 +4781,19 @@
               "inner_link_colour": "#000000",
               "sale_colour": "#ff0000",
               "mobile_title_colour": true,
-              "subheadings_colour": "#ff0000",
+              "subheadings_colour": "rgba(0,0,0,0)",
               "linklist": "new-meganav-sale",
               "background_colour": "#fcfaf7",
               "featured_content_mobile": false,
-              "featured_content_heading": "We Love These",
-              "featured_content_1": "shopify:\/\/collections\/new-season",
-              "featured_content_title_1": "AW22 Collection",
-              "featured_content_image_1": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0004_220623_EA_CHINTI_AND_PARKER_AW23_SH04_036_R1.jpg",
-              "featured_content_mobile_image_1": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0004_220623_EA_CHINTI_AND_PARKER_AW23_SH04_036_R1.jpg",
+              "featured_content_heading": "",
+              "featured_content_1": "",
+              "featured_content_title_1": "",
               "featured_content_mobile_1": false,
-              "featured_content_2": "shopify:\/\/collections\/cashmere-essentials",
-              "featured_content_title_2": "New Essentials",
-              "featured_content_image_2": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0013_220623_EA_CHINTI_AND_PARKER_AW23_SH17_044_R1.jpg",
-              "featured_content_mobile_image_2": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0013_220623_EA_CHINTI_AND_PARKER_AW23_SH17_044_R1.jpg",
+              "featured_content_2": "",
+              "featured_content_title_2": "",
               "featured_content_mobile_2": false,
-              "featured_content_3": "shopify:\/\/collections\/new-cashmere",
-              "featured_content_title_3": "New Cashmere",
-              "featured_content_image_3": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0008_220623_EA_CHINTI_AND_PARKER_AW23_SH11_046_R1.jpg",
-              "featured_content_mobile_image_3": "shopify:\/\/shop_images\/AW22_Main_Campaign_-_Spotlights_Campaign_.psd_0008_220623_EA_CHINTI_AND_PARKER_AW23_SH11_046_R1.jpg",
+              "featured_content_3": "",
+              "featured_content_title_3": "",
               "featured_content_mobile_3": false
             }
           },
@@ -4830,11 +4830,11 @@
           }
         },
         "block_order": [
-          "6c74fccf-d75d-4116-a644-f875875c8a97",
+          "64a606c1-8962-4797-b9f5-8ade2f659d08",
           "72687d6c-7c6d-41ac-bccc-2935be97aa37",
           "79fb6687-d4c2-4e07-80dc-48a5ff76d7e3",
           "79f9b02c-cdda-468c-88d8-3ca1a9d3a3a2",
-          "64a606c1-8962-4797-b9f5-8ade2f659d08",
+          "6c74fccf-d75d-4116-a644-f875875c8a97",
           "d4e7c454-3233-42df-ad53-ff0b2f0c5e9c"
         ],
         "settings": {
