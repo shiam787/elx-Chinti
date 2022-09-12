@@ -183,9 +183,9 @@
 
                       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         {% if product.available %}
-    							<link itemprop="availability" href="http://schema.org/InStock" />
+    							<link itemprop="availability" href="in stock" />
 						{% else %}
-    							<link itemprop="availability" href="http://schema.org/OutOfStock" />
+    							<link itemprop="availability" href=" out of stock" />
 						{% endif %}	
                         <meta itemprop="price" content="{{ product.price | money_without_currency }}">
                         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
