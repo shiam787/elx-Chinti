@@ -179,9 +179,10 @@
 						{% assign vendor_url = collections[product_vendor_handle].url %}
 						{% else %}
 						{% assign vendor_url = product.vendor | url_for_vendor %}
-						{% endif %}                     
+						{% endif %} 
                       
-						<div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="delta{% if product.compare_at_price > product.price %} isOnSale{%endif%}">
+                      <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+						<div id="product-price"  class="delta{% if product.compare_at_price > product.price %} isOnSale{%endif%}">
     						{% if product.available %}
     							<link itemprop="availability" href="http://schema.org/InStock" />
 							{% else %}
@@ -201,6 +202,7 @@
 							</p>
 							<p id="USDutiesAndTaxesProduct">{{settings.chinti_us_delivery_message}}</p>
 						</div>
+                    </div>
                       <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
 
 					</div>
