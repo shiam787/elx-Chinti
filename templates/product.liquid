@@ -179,7 +179,7 @@
 						{% assign vendor_url = collections[product_vendor_handle].url %}
 						{% else %}
 						{% assign vendor_url = product.vendor | url_for_vendor %}
-						{% endif %} 
+						{% endif %}
 
                       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         {% if product.available %}
@@ -190,30 +190,29 @@
                         <meta itemprop="price" content="{{ product.price | money_without_currency }}">
                         <meta itemprop="priceCurrency" content="{{ shop.currency }}">
                       </div>
-                      
-                      <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-						<div id="product-price"  class="delta{% if product.compare_at_price > product.price %} isOnSale{%endif%}">
-    						{% if product.available %}
-    							<link itemprop="availability" href="http://schema.org/InStock" />
+
+						<div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="delta{% if product.compare_at_price > product.price %} isOnSale{%endif%}">
+							<meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+							<meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
+							<meta itemprop="price" content="{{ product.price | money_without_currency }}">
+
+							{% if product.available %}
+							<link itemprop="availability" href="http://schema.org/InStock" />
 							{% else %}
-    							<link itemprop="availability" href="http://schema.org/OutOfStock" />
-							{% endif %}	
-                            <link itemprop="itemCondition" href="http://schema.org/NewCondition">
-                            <meta itemprop="price" content="{{ product.price | money_without_currency }}">
-                            <meta itemprop="priceCurrency" content="{{ shop.currency }}" />
+							<link itemprop="availability" href="http://schema.org/OutOfStock" />
+							{% endif %}
 							<p>
 								{% assign variant = product.selected_or_first_available_variant %}
 								{% if product.compare_at_price > product.price %}
 								<s class="product-compare-price"> {{ variant.compare_at_price | money_without_currency  | replace: ".00", ""}} </s>
-								<span class="product-price on-sale">{{ variant.price | money_without_currency  | replace: ".00", ""}} </span>
+								<span class="product-price on-sale" itemprop="price">{{ variant.price | money_without_currency  | replace: ".00", ""}} </span>
+
 								{% else %}
-								<span class="product-price"> {{ variant.price | money_without_currency  | replace: ".00", ""}} </span>
+								<span class="product-price" itemprop="price"> {{ variant.price | money_without_currency  | replace: ".00", ""}} </span>
 								{% endif %}
 							</p>
 							<p id="USDutiesAndTaxesProduct">{{settings.chinti_us_delivery_message}}</p>
 						</div>
-                    </div>
-                      <meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
 
 					</div>
 					<div class="description-variants-add" id="description-variants-add">
