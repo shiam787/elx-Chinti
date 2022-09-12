@@ -181,6 +181,13 @@
 						{% assign vendor_url = product.vendor | url_for_vendor %}
 						{% endif %}
 
+                       <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+    <link itemprop="availability" href="http://schema.org/InStock">
+    <link itemprop="itemCondition" href="http://schema.org/NewCondition">
+    <meta itemprop="price" content="7.99">
+    <meta itemprop="priceCurrency" content="USD">
+  </div>
+
 						<div id="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer" class="delta{% if product.compare_at_price > product.price %} isOnSale{%endif%}">
 							<meta itemprop="priceCurrency" content="{{ shop.currency }}" />
 							<meta itemprop="url" content="{{ shop.url }}{{ product.url }}" />
