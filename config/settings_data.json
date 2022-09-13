@@ -4750,7 +4750,7 @@
           "79f9b02c-cdda-468c-88d8-3ca1a9d3a3a2": {
             "type": "nav_item",
             "settings": {
-              "title": "Collabs",
+              "title": "Peanuts",
               "title_url": "shopify:\/\/collections\/collabs",
               "title_colour": "#e2ce0a",
               "inner_link_colour": "#000000",
@@ -4780,6 +4780,7 @@
           },
           "6c74fccf-d75d-4116-a644-f875875c8a97": {
             "type": "nav_item",
+            "disabled": true,
             "settings": {
               "title": "Sale",
               "title_url": "shopify:\/\/collections\/sale",
