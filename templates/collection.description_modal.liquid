@@ -535,23 +535,23 @@ Example: the h2 element should have the same size and color in:
         moreBtn.style.display = 'none'
       }
 
-      moreBtn.addEventListener('click', function () {
+      moreBtn && moreBtn.addEventListener('click', function () {
         collModal.classList.remove('modal-hide');
         collModal.classList.add('modal-transition');
         collOverlay.classList.remove('modal-hide');
         collOverlay.classList.add('modal-transition');
       });
-      lessBtn.addEventListener('click', function () {
+      lessBtn && lessBtn.addEventListener('click', function () {
         collModal.classList.add('modal-hide');
         collModal.classList.remove('modal-transition');
         collOverlay.classList.add('modal-hide');
         collOverlay.classList.remove('modal-transition');
       });
   
-      modalX.addEventListener('click', function () {
+      modalX && modalX.addEventListener('click', function () {
         lessBtn.click();
       });
-      collOverlay.addEventListener('click', function () {
+      collOverlay && collOverlay.addEventListener('click', function () {
         lessBtn.click();
       });
 
