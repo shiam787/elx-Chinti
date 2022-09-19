@@ -1,0 +1,13 @@
+{
+  "wrapper": "div#home-template",
+  "sections": {
+    "slideshow": {
+      "type": "slideshow",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "slideshow"
+  ]
+}
