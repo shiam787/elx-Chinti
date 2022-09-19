@@ -5895,15 +5895,16 @@ jQuery(document).ready(function () {
     if (jQuery(".slideshow-wrapper .owl-carousel")) {
         jQuery(".slideshow-wrapper .owl-carousel").owlCarousel({
             items: 1,
-            loop: true,
-            nav: false,
-            dots: true,
-            autoplay: true,
-            autoplayTimeout: 6000,
-            autoplayHoverPause: true,
-            autoplaySpeed: 1500,
-            navSpeed: 1500,
-            animateOut: "fadeOut"
+			loop: true,
+			dots: true,
+			nav: true,
+			navText: ["<i class='fa fa-chevron-left'></i>", "<i class='fa fa-chevron-right'></i>"],
+			autoplay: true,
+			autoplayTimeout: 6000,
+			autoplayHoverPause: true,
+			autoplaySpeed: 2500,
+			navSpeed: 2500,
+			animateOut: "fadeOut"
         });
     }
     
