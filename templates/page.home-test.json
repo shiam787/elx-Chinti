@@ -3,6 +3,32 @@
   "sections": {
     "slideshow": {
       "type": "slideshow",
+      "blocks": {
+        "a31cd2f4-a05c-48a8-9a36-4984d1ed358d": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hero-banner-01.jpg",
+            "text_color": "text-light",
+            "title": "Image slide",
+            "subheading": "Lorem ipsum dolor sit amet",
+            "link": ""
+          }
+        },
+        "cb502267-45aa-45d4-b2cb-30c0398b53ba": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hero-banner-02.jpg",
+            "text_color": "text-light",
+            "title": "Image slide",
+            "subheading": "Lorem ipsum dolor sit amet",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "a31cd2f4-a05c-48a8-9a36-4984d1ed358d",
+        "cb502267-45aa-45d4-b2cb-30c0398b53ba"
+      ],
       "settings": {
       }
     }
