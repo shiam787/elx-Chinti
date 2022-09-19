@@ -3,11 +3,12 @@
 	{% if section.blocks.size > 0 %}
 	<div class="slideshow-wrapper row">
 
-		<div class="slideshow owl-carousel" id="Slideshow-{{ section.id }}">
+		<div class="slideshow owl-carousel owl-theme" id="Slideshow-{{ section.id }}">
 			{% for block in section.blocks %}
 
 			<div class="slideshow__slide slideshow__slide--{{ block.id }} {{ block.settings.text_color | escape }}" {{ block.shopify_attributes }}>
 
+          
 				<div class="slideshow__image">
 					{% if block.settings.image %}
 
@@ -75,24 +76,26 @@
 					</div>
 					{% endif %}
 				</div>
-				{% if block.settings.link != blank %}
-					<a href="{{ block.settings.link }}" class="link_full">&nbsp;</a>
-				{% endif %}
-				<div class="text-wrap overlay">
+       
+        {% if block.settings.link != blank %}
+          {% assign ctaLink=  block.settings.link %}
+        {% endif %}
+				<div class="text-wrap overlay" onclick="slideLink({{ ctaLink }})">
 					<div class="text-content">
-						<div class="wrapper">
+						<div class="wrapper" style="text-align: {{ block.settings.content_alignment }};">
 							{% unless block.settings.title == blank %}
 							<h2 class="mega-title title"> {{ block.settings.title }} </h2>
 							{% endunless %}
 							{% unless block.settings.subheading == blank %}
 							<p class="mega-subtitle subtitle"> {{ block.settings.subheading | escape }} </p>
 							{% endunless %}
+              {% if block.settings.link != blank %}
+					      <a href="{{ block.settings.link }}" class="cta-action">{{ block.settings.button_text }}</a>
+				      {% endif %}
 						</div>
 					</div>
 				</div>
-				{% if block.settings.link != blank %}
-					<a href="{{ block.settings.link }}" class="btn-shop-now">Shop Now</a>
-				{% endif %}
+				
 			</div>
 			{% endfor %}
 		</div>
@@ -146,9 +149,34 @@
             "default": "Lorem ipsum dolor sit amet"
           },
           {
+            "type": "text",
+            "id": "button_text",
+            "label": "CTA Button Text"
+          },
+          {
             "type": "url",
             "id": "link",
             "label": "Slide link"
+          },
+          {
+            "type": "select",
+            "id": "content_alignment",
+            "label": "Content alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "left"
+              },
+              {
+                "value": "center",
+                "label": "center"
+              },
+              {
+                "value": "right",
+                "label": "right"
+              }
+            ],
+            "default": "left"
           }
         ]
       }
@@ -170,3 +198,43 @@
     }]
   }
 {% endschema %}
+
+<style>
+  @font-face {
+    font-family: gotham book;
+    src: url(https://cdn.shopify.com/s/files/1/0040/7057/2147/files/Gotham_Book_Font.otf?v=1663331829);
+  }
+  .slideshow-wrapper h2,.slideshow-wrapper p , .slideshow-wrapper a{
+    font-family: gotham book !important;
+  }
+  .slideshow-wrapper .mega-title {
+    letter-spacing: 1px;
+    line-height: 70px;
+  }
+  .slideshow-wrapper .text-content p{
+    font-size: 24px;
+  }
+  .slideshow-wrapper .text-content .cta-action {
+    color: white;
+    border: 1px solid white;
+    padding: 10px 30px;
+    font-size: 40px;
+    margin-top: 30px;
+    display: inline-block;
+}
+.slideshow-wrapper  .text-wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 2;
+    top: 0;
+    background: #00000036;
+    transform: unset;
+}
+.slideshow-wrapper  .text-wrap .text-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+</style>
