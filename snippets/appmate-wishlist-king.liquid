@@ -1074,11 +1074,23 @@
   }
 </script>
 <script class="text/javascript">
-	jQuery(document).ready(function () {
-		jQuery('#wk-share-head').click(function(e){
-            jQuery(this).toggleClass('active').next('#wk-share-list').slideToggle();
-        });
-	});
+    (function pollFor() {
+    if (window.jQuery !== undefined) {
+        try {
+            jQuery(document).ready(function () {
+            jQuery('#wk-share-head').click(function(e){
+                  jQuery(this).toggleClass('active').next('#wk-share-list').slideToggle();
+              });
+        	});
+            console.log("Variation- A: 01");
+        } catch (error) {
+          console.log("Initialization error:", error);
+        }
+    } else {
+        setTimeout(pollFor, 25);
+    }
+})();
+	
 </script>
 <script
   src="https://az814789.vo.msecnd.net/toolkit/1.4.21/appmate.js"
